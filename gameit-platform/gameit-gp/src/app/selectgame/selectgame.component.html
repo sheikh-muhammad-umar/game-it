@@ -1,0 +1,37 @@
+<div class="row">
+    <!-- column -->
+    <div class="col-md-6 col-lg-4">
+        <!-- Card -->
+        <div class="card card-select">
+            <div class="image-box">
+                <img class="card-img-top img-fluid px-3 pb-0" src="assets/images/games/game1-stage1.png" alt="The Adventure of Gizmo and Azzo">
+            </div>
+            <div class="card-body">
+                <h4 class="card-title text-center text-truncate">Game 1 (Beginner Level)</h4>
+                <h5 class="card-title text-center text-truncate">"The Adventure of Gizmo and Azzo"</h5>
+                <h6 class="card-text text-center">Attention and Listening</h6>
+                <div class="text-center">
+                    <a href="javascript:void(0)" (click)="openModalDialog(assigngame,1)" class="stretched-link"><i data-feather="info" class="feather-icon"></i></a>
+                </div>
+            </div>
+        </div>
+        <!-- Card -->
+    </div>
+    <!-- column -->
+
+
+</div>
+
+<ng-template #assigngame let-modal>
+    <div class="modal-header ">
+        <h3 class="modal-title ">Stage {{selectedGameId}}</h3>
+        <a href="javascript:void(0)" class="closebtn" (click)="modal.dismiss( 'Cross click')">X</a>
+    </div>
+    <div class="modal-body ">
+        <app-assigngame [myModal]="myModal" [selectedStudentId]="selectedStudentId" [selectedGameId]="selectedGameId"></app-assigngame>
+    </div>
+    <div class="modal-footer ">
+        <i style="font-size: x-large;" class="fa fa-exclamation-circle" aria-hidden="true"></i>
+        <h5 class="modal-title ">To start playing, log in to your child’s account in the child's dashboard</h5>
+    </div>
+</ng-template>

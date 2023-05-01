@@ -1,0 +1,80 @@
+# noinspection GraphQLUnresolvedReference,GraphQLMissingType
+""" Gender """
+enum Gender {
+	""" Father """
+	FATHER
+	""" Mother """
+	MOTHER
+	""" NOT_SPECIFIED """
+	NOT_SPECIFIED
+}
+
+""" Signup school related fields """
+input SignupSchoolInputs {
+	""" School ID """
+	id: PositiveInt
+	""" School name """
+	name: String @constraint(minLength: 3, maxLength: 40)
+	""" City name """
+	city: String @constraint(minLength: 2, maxLength: 30)
+}
+
+""" signUp mutation input fields """
+input SignupInputs {
+	""" User role """
+	role: UserRole!
+	""" First name """
+	firstName: String! @constraint(minLength: 3, maxLength: 15)
+	""" Last name """
+	lastName: String! @constraint(minLength: 3, maxLength: 15)
+	""" Username """
+	username: String! @constraint(minLength: 6, maxLength: 40)
+	""" Email address """
+	email: EmailAddress!
+	""" Gender """
+	gender: Gender
+	""" Password """
+	password: String! @constraint(minLength: 8, maxLength: 40)
+	""" Country code """
+	country: String! @constraint(
+		minLength: 2,
+		maxLength: 4,
+		pattern: "^[A-Z]+$"
+	)
+	""" School fields """
+	school: SignupSchoolInputs
+}
+
+""" sendActivationCode mutation input fields """
+input SendActivationCodeInputs {
+	""" Username or email address """
+	username: String! @constraint(minLength: 6, maxLength: 255)
+}
+
+""" verifyAndActivateUserAccount mutation input fields """
+input VerifyAndActivateUserAccountInputs {
+	""" Username or email address """
+	username: String! @constraint(minLength: 6, maxLength: 255)
+	""" Verification code """
+	code: String! @constraint(minLength: 6, maxLength: 6, pattern: "^[0-9]{6}$")
+}
+
+type Mutation {
+	""" Create a new user account """
+	signUp (
+		""" Input fields """
+		inputs: SignupInputs!
+	): Void @guest @cost(complexity: 500)
+
+	""" Send a account verification code """
+	sendVerificationCode (
+		""" Input fields """
+		inputs: SendActivationCodeInputs!
+	): Void @guest @cost(complexity: 300)
+
+	""" Verify and activate pending user account """
+	verifyAndActivateUserAccount (
+		""" Input fields """
+		inputs: VerifyAndActivateUserAccountInputs!
+	): Void @guest @cost(complexity: 300)
+}

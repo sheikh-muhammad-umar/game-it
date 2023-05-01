@@ -1,0 +1,167 @@
+<app-nav-bar></app-nav-bar>
+
+<section class="section section-intro context-dark" style="background-color:#f64b39">
+    <div class="intro-bg" style="background: url(assets/images/intro-bg-1.png) no-repeat;background-size:cover;background-position: top center;"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 text-center">
+                <h1 class="font-weight-bold wow fadeInLeft" style="visibility: visible; animation-name: fadeInLeft;"></h1>
+                <p class="intro-description wow fadeInRight" style="visibility: visible; animation-name: fadeInRight;"></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-lg bg-white text-center">
+    <div class="container">
+
+        <article class="blog-layout">
+
+            <div class="blog-layout__main">
+                <h3 class="wow fadeInLeft text-capitalize blog devider-bottom" data-wow-delay=".3s" [innerHTML]="'_Blog_Page_Title'|translate"></h3>
+
+                <!-- Post Classic-->
+                <article class="post-classic">
+                    <h3 class="post-classic__title" translate>_Blog_Page_First_Article_Title</h3>
+                    <ul class="post-classic__meta">
+                        <li><span class="icon mdi mdi-calendar-blank"></span>
+                            <a>
+                                <time datetime="2019" translate>_Blog_Page_First_Article_Date</time></a>
+                        </li>
+                        <li><span class="icon mdi mdi-comment-outline"></span><a translate>_Blog_Page_First_Article_Comments</a></li>
+                        <li><span class="icon mdi mdi-account"></span><span></span><a translate>_Blog_Page_First_Article_Writer</a></li>
+                    </ul>
+                    <div class="post-classic__media">
+                        <img class="post-classic__image" src="assets/images/blog-post-1.png" alt="" width="715" height="417">
+                        <p style="text-align: justify;" translate>_Blog_Page_First_Article</p>
+
+                        <p style="text-align: left;" translate>
+                            _Blog_Page_First_Article_Read_More
+                            <a href="https://www.forbes.com/sites/ilkerkoksal/2018/04/17/ai-has-already-started-reshaping-the-special-education/?sh=4ed22b9029d5" translate>_Blog_Page_First_Article_Read_More_Link</a>
+
+                        </p>
+
+                    </div>
+                </article>
+                <!-- Post Classic-->
+                <article class="post-classic">
+                    <h3 class="post-classic__title" translate>_Blog_Page_Second_Article_Title</h3>
+                    <ul class="post-classic__meta">
+                        <li><span class="icon mdi mdi-calendar-blank"></span>
+                            <a>
+                                <time datetime="2019" translate>_Blog_Page_Second_Article_Date</time></a>
+                        </li>
+                        <li><span class="icon mdi mdi-comment-outline"></span><a translate>_Blog_Page_Second_Article_Comments</a></li>
+                        <li><span class="icon mdi mdi-account"></span><span></span><a translate>_Blog_Page_Secondt_Article_Writer</a></li>
+                    </ul>
+                    <div class="post-classic__media">
+                        <!--img class="post-classic__image" src="assets/images/blog-post-1-715x417.jpg" alt="" width="715" height="417"-->
+                        <p style="text-align: justify;" translate>
+                            _Blog_Page_Second_Article</p>
+
+                        <p style="text-align: left;" translate>
+                            _Blog_Page_Second_Article_Read_More
+                            <a href="https://www.researchgate.net/publication/255797735_A_Review_on_Artificial_Intelligence_in_Special_Educati" translate>_Blog_Page_Second_Article_Read_More_Link</a>
+
+                        </p>
+                    </div>
+                </article>
+                <!-- Post Classic-->
+                <article class="post-classic">
+                    <h3 class="post-classic__title" translate>_Blog_Page_Third_Article_Title</h3>
+                    <ul class="post-classic__meta">
+                        <li><span class="icon mdi mdi-calendar-blank"></span>
+                            <a>
+                                <time datetime="2019" translate>_Blog_Page_Third_Article_Date</time></a>
+                        </li>
+                        <li><span class="icon mdi mdi-comment-outline"></span><a translate>_Blog_Page_Third_Article_Comments</a></li>
+                        <li><span class="icon mdi mdi-account"></span><span></span><a translate>_Blog_Page_Third_Article_Writer</a></li>
+                    </ul>
+                    <div class="post-classic__media">
+                        <!--img class="post-classic__image" src="assets/images/blog-post-1-715x417.jpg" alt="" width="715" height="417"-->
+                        <p style="text-align: justify;" translate>
+                            _Blog_Page_Third_Article</p>
+
+                        <p style="text-align: left;" translate>
+                            _Blog_Page_Third_Article_Read_More
+                            <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6679141/#:~:text=Previous%20studies%20have%20shown%20the,in%20students%20with%20learning%20disabilities.&text=Performance%20and%20observation%20measures%20of%20attention%20were%20used" translate>_Blog_Page_Third_Article_Read_More_Link</a>
+                        </p>
+                    </div>
+                </article>
+
+                <!--div class="pagination">
+            <div class="pagination__control"><a href="#">Older posts</a></div>
+            <ul class="pagination__list">
+              <li><a href="#">1</a></li>
+              <li class="active"><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+            </ul>
+            <div class="pagination__control"><a href="#">Newer posts</a></div>
+          </div-->
+            </div>
+            <!--div class="blog-layout__aside">
+          <div class="blog-layout__aside-item">
+            
+            <form class="rd-search rd-search_inline form_lg form_outline" action="search-results.html" method="GET">
+              <div class="form-wrap">
+                <label class="form-label rd-input-label" for="rd-search-blog-form-input">Search blog...</label>
+                <input class="form-input" id="rd-search-blog-form-input" type="text" name="s" autocomplete="off">
+              </div>
+              <button class="button-link linearicons-magnifier" type="submit"></button>
+            </form>
+          </div>
+          <div class="blog-layout__aside-item blog-layout__aside-item_bordered">
+            <p class="custom-heading-line heading-8">Categories</p>
+            <ul class="list-categories">
+              <li class="active"><a href="#">All categories</a><span class="count">64</span></li>
+              <li><a href="#">Software</a><span class="count">23</span></li>
+              <li><a href="#">Development</a><span class="count">10</span></li>
+              <li><a href="#">Programming</a><span class="count">10</span></li>
+            </ul>
+          </div>
+          <div class="blog-layout__aside-item blog-layout__aside-item_bordered">
+            <p class="custom-heading-line heading-8">Latest Posts</p>
+            <ul class="list-posts">
+              <li>
+                
+                <article class="post-line">
+                  <time class="post-line__time" datetime="2019"><span class="post-line__time-day">24</span><span class="post-line__time-month">may</span></time>
+                  <div class="post-line__title"><a href="blog-post.html">Startup Software Development</a></div>
+                </article>
+              </li>
+              <li>
+                
+                <article class="post-line">
+                  <time class="post-line__time" datetime="2019"><span class="post-line__time-day">12</span><span class="post-line__time-month">may</span></time>
+                  <div class="post-line__title"><a href="blog-post.html">Hybrid Cloud Management Software Solutions</a></div>
+                </article>
+              </li>
+              <li>
+               
+                <article class="post-line">
+                  <time class="post-line__time" datetime="2019"><span class="post-line__time-day">03</span><span class="post-line__time-month">may</span></time>
+                  <div class="post-line__title"><a href="blog-post.html">Creating Better Software Through Design Thinking</a></div>
+                </article>
+              </li>
+            </ul>
+          </div>
+          <div class="blog-layout__aside-item blog-layout__aside-item_bordered">
+            <p class="custom-heading-line heading-8">Archive</p>
+            
+            <div class="select2-container form-input select form-control-has-validation form-control-last-child" id="s2id_regula-generated-588234"><a href="javascript:void(0)" class="select2-choice" tabindex="-1">   <span class="select2-chosen" id="select2-chosen-1">August 2019</span><abbr class="select2-search-choice-close"></abbr>   <span class="select2-arrow" role="presentation"><b role="presentation"></b></span></a><label for="s2id_autogen1" class="select2-offscreen"></label><input class="select2-focusser select2-offscreen" type="text" aria-haspopup="true" role="button" aria-labelledby="select2-chosen-1" id="s2id_autogen1"><div class="select2-drop select2-display-none">   <div class="select2-search select2-search-hidden select2-offscreen">       <label for="s2id_autogen1_search" class="select2-offscreen"></label>       <input type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input" role="combobox" aria-expanded="true" aria-autocomplete="list" aria-owns="select2-results-1" id="s2id_autogen1_search" placeholder="">   </div>   <ul class="select2-results" role="listbox" id="select2-results-1">   </ul></div></div><select class="form-input select form-control-has-validation form-control-last-child" data-placeholder="All" data-minimum-results-for-search="Infinity" data-constraints="@Required" id="regula-generated-588234" tabindex="-1" title="" style="display: none;">
+              <option>August 2019</option>
+              <option value="1">July 2019</option>
+              <option value="2">June 2019</option>
+              <option value="3">May 2019</option>
+              <option value="4">April 2019</option>
+              <option value="5">March 2019</option>
+            </select><span class="form-validation"></span>
+          </div>
+        </div-->
+
+        </article>
+    </div>
+
+</section>
+
+<app-footer></app-footer>

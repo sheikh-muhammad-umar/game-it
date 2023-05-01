@@ -1,0 +1,17 @@
+@media (min-width: 1024px) {
+    .card {
+        align-items: center;
+        flex-direction: row;
+    }
+    .card-title {
+        font-weight: bold;
+    }
+    .card-body {
+        align-items: top;
+    }
+    .card img {
+        width: 40%;
+        border-top-right-radius: 0;
+        border-bottom-left-radius: calc(0.25rem - 1px);
+    }
+}

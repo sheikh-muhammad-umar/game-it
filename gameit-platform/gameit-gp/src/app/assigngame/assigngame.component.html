@@ -1,0 +1,80 @@
+<div class="game-banner col-12" *ngIf="selectedGameId==1">
+    <div class="card">
+        <div class="card-horizontal">
+            <div class="img-square-wrapper">
+                <img class="card-img-top img-fluid" src="assets/images/games/game1-stage1.png" alt="Voyage of Ezzo & Gizmo">
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">The Adventure of Gizmo and Azzo</h4>
+                <h5 class="card-subtitle mb-2 text-muted">Attention and Listening</h5>
+                <p class="card-text">In this stage, we train the player's focus and attention span. The player will be engaged in a game environment while enhancing their cognitive abilities.</p>
+                <p class="card-text">* Supported only on Windows operating system</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="game-banner col-12" *ngIf="selectedGameId==2">
+    <div class="card">
+        <div class="card-horizontal">
+            <div class="img-square-wrapper">
+                <img class="card-img-top img-fluid" src="assets/images/games/game1-stage2.png" alt="Confronting Aliens">
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">Saving The Energy Lab</h4>
+                <h5 class="card-subtitle mb-2 text-muted">Following Instructions</h5>
+                <p class="card-text">In this stage the player is trained to distinguish between different shapes and colors. With added abilities such as firing laser beams, the player will always have something to do that brighten the gameplay experience.</p>
+                <p class="card-text">* Supported only on Windows operating system</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="game-banner col-12" *ngIf="selectedGameId==3">
+    <div class="card">
+        <div class="card-horizontal">
+            <div class="img-square-wrapper">
+                <img class="card-img-top img-fluid" src="assets/images/games/game1-stage3.png" alt="Stage 3">
+            </div>
+            <div class="card-body">
+                <h4 class="card-title">Searching for the Spaceship</h4>
+                <h5 class="card-subtitle mb-2 text-muted">Listening Memory</h5>
+                <p class="card-text">In this stage the player is trained on memory skills, along with the all skills practiced from the last 2 stages. Every time the player plays through the 3 stages, their attention and cognitive abilities get stronger.</p>
+                <p class="card-text">* Supported only on Windows operating system</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+    <div class="form-group">
+        <label for="children">Select your child:</label>
+        <select name="selectchild" #selectchild="ngModel" [ngModel]="selectedStudentId" (ngModelChange)="updateStudentId($event)" required class="form-control">
+            <option *ngFor="let student of students" [value]="student.id">{{student.firstName}}</option>
+        </select>
+        <div class="alert-danger" *ngIf="selectchild.errors && f.submitted">
+            <div *ngIf="selectchild.errors['required']">Select a child</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="instructions">Please put a note for child:</label>
+        <textarea type="text" class="form-control" name="instructions" [(ngModel)]="form.instructions" minlength="3" maxlength="500" #instructions="ngModel"></textarea>
+    </div>
+
+    <div class="form-group">
+        <button class="btn btn-primary">Add Game to Your Child's profile</button>
+    </div>
+
+    <div class="alert alert-warning" *ngIf="f.submitted && isAssignFailed">
+        Send failed!<br />{{ errorMessage }}
+    </div>
+
+</form>
+<div *ngIf="isSuccessful" class="text-center">
+    <div class="text-center" style="display: flex; color: green;"> <i class="fa fa-check" aria-hidden="true"></i>&nbsp;
+        <h5 class="modal-title ">Successfully added game to child’s profile!</h5>
+    </div>
+    <button class="btn btn-primary pt-2" [routerLink]="['/dashboard/', selectedStudentId]" (click)="myModal.close()">Go to child's dashboard</button>
+</div>

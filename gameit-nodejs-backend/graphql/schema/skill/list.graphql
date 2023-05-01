@@ -1,0 +1,47 @@
+# noinspection GraphQLUnresolvedReference,GraphQLMissingType
+""" Skills sort orders """
+enum SkillsSortOrder {
+	""" Natural order """
+	NATURAL
+	""" Name ascending """
+	NAME_ASC
+	""" Name descending """
+	NAME_DESC
+}
+
+type Skill {
+	""" ID """
+	id: PositiveInt!
+	""" Name """
+	name: String!
+	""" Decription """
+	description: String!
+}
+
+input SkillListFilters {
+	""" Contains name """
+	name: String @constraint(minLength: 2, maxLength: 40)
+}
+
+type SkillsConnection {
+	""" Total nodes """
+	totalCount: Int @cost(complexity: 1)
+	""" Pagination info """
+	pageInfo: PageInfo!
+	""" Nodes collection """
+	nodes: [Skill!]
+}
+
+type Query {
+	""" Get Skill listing """
+	listSkills (
+		""" Pagination props """
+		pager: PagerOptions = {},
+		""" Sort order """
+		sortOrder: [SkillsSortOrder] = [NAME_ASC],
+		""" Meta fields selection """
+		metaPaths: [String!]
+		""" Attributes filter """
+		filters: SkillListFilters
+	): SkillsConnection @auth(role: [TEACHER, SCHOOL_ADMIN, GUARDIAN]) @cost(complexity: 50, multipliers: ["pager.limit", "sortOrder"])
+}

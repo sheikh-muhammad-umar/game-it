@@ -1,0 +1,9 @@
+type Diagnose{
+    id:PositiveInt!
+    title:String!
+    description:String
+}
+
+type Query{
+    diagnoses:[Diagnose!]
+}

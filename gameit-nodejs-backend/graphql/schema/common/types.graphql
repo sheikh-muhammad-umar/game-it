@@ -1,0 +1,40 @@
+type RecordStatus {
+	# Status Label
+	title: String!
+	# Status Type
+	value: Int!
+}
+
+enum PaginationStyle {
+	CURSOR
+	NUMBER
+}
+
+type PageInfoPager {
+	pageCount: Int
+	current: Int
+	previous: Int
+	next: Int
+	first: Int
+	last: Int
+}
+
+type PageInfoCursor {
+	startCursor: String
+	endCursor: String
+	hasNextPage: Boolean
+	hasPreviousPage: Boolean
+}
+
+input PagerOptions {
+	before: String
+	after: String
+	page: PositiveInt = 1
+	limit: PositiveInt = 10
+	type: PaginationStyle = CURSOR
+}
+
+type PageInfo {
+	cursors: PageInfoCursor
+	pager: PageInfoPager
+}

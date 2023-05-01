@@ -1,0 +1,56 @@
+# User Schema
+
+type UserAccountType {
+	""" Caption """
+	title: String!
+	value: PositiveInt!
+	type: UserRole
+}
+
+""" Teacher user details """
+type Teacher {
+	""" Teacher details """
+	school: School @cost(complexity: 200)
+	""" Pending join school request details """
+	schoolRequest: SchoolRequest @cost(complexity: 200)
+	""" Classroom details """
+	classroom: Classroom @cost(complexity: 200)
+	""" Total classroom """
+	totalClassrooms: Int!
+    """ Total students """
+	totalStudents: Int!
+}
+
+""" School admin details """
+type SchoolAdmin {
+	""" Total children """
+	totalClassrooms: Int!
+}
+
+""" Guardian user details """
+type Guardian {
+	""" Total children """
+	totalChildren: Int!
+}
+
+""" My account info """
+type Me @cost(complexity: 100) {
+	id: PositiveInt!
+	firstName: String!
+	lastName: String!
+	email: String!
+	username: String!
+	role: UserAccountType!
+	language: String!
+	timezone: String!
+	created: DateTime!
+	countryCode: String!
+	teacher: Teacher @cost(complexity: 100)
+	guardian: Guardian
+	schoolAdmin: SchoolAdmin
+}
+
+type Query {
+	""" Get current user account info """
+	me: Me @auth
+}

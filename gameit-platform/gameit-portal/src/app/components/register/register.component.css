@@ -1,0 +1,48 @@
+label {
+  display: block;
+  margin-top: 10px;
+}
+
+.card-container.card.register {
+  max-width: 574px !important;
+}
+
+.card-container.card {
+  max-width: 400px !important;
+  padding: 40px 40px;
+}
+
+.card {
+  background-color: #f7f7f7;
+  padding: 20px 25px 30px;
+  margin: 0 auto 25px;
+  margin-top: 10px;
+  -moz-border-radius: 2px;
+  -webkit-border-radius: 2px;
+  border-radius: 2px;
+  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.profile-img-card {
+  width: 96px;
+  height: 96px;
+  margin: 0 auto 10px;
+  display: block;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+}
+
+/* input.form-control {
+  border: none;
+  outline: none;
+  box-shadow: none;
+  background-image: linear-gradient(to left, white calc(.5em + 1px), black calc(.5em + 1px), black calc(.5em + 2px), transparent 0), linear-gradient(to right, black 1px, transparent 0), linear-gradient(to bottom, black 1px, transparent 0), linear-gradient(to top, black 1px, transparent 0);
+  background-size: 3em 100%;
+  font-size: 28px;
+  padding: 0px;
+  font-family: monospace;
+  width: 11.5em;
+} */

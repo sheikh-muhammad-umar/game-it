@@ -1,0 +1,31 @@
+enum GameStoreType {
+    FREE
+    PAID
+    ALL
+}
+
+input DateRangeFilter {
+    from: Date!
+    to: Date!
+}
+
+input UsersFilters {
+    dateRange: DateRangeFilter
+}
+
+type UsersQuery {
+    userSubscriptions ( filters: UsersFilters ): [UserSubscription]
+}
+
+type Query  {
+    users: UsersQuery
+}
+
+# playerStats ( playerId (studentId), filters?: {dateRange? {from, to}, skill?, gameId?} ): Object (Waiting inputs from Nada/Ali)
+# listChildren (): [Student]
+# gamesStore (filters: {type?: ALL | PAID | FREE}, skills?, title?, description?, platforms?}): [Game]
+# ~ notes: (Type of list => [Subscription = All_GAMES, PAID = FREE & PURCHASED GAMES, NONE: ALL FREE GAMES]
+# assignGameToChild ( childId, gameId ): Void
+# ~ Also add a game to the user's library
+# unassignGameToChild ( childId, gameId ): Void
+# ~ Note: Do not remove game, just disallow access to it.

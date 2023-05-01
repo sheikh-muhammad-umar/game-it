@@ -1,0 +1,16 @@
+
+<div class="" style="text-align:center;padding-top:40px">
+    <a href="/" class="brand">
+      <img src="assets/images/gameit-logo-medium.png" alt="" width="200" height="17" class="brand-logo-dark">
+    </a>
+  </div>
+  
+<div *ngIf="isVerified" style="margin-top: 40px;" class="container text-center">
+    <h3>Congratulations, your account has been verified.</h3>
+    <h4><a href="/login">Click here to Login</a></h4>
+</div>
+
+<div *ngIf="!isVerified" style="margin-top: 40px;" class="container text-center">
+    <h3>Sorry, we could not verify account. It maybe already verified,
+        or verification code is incorrect.</h3>
+</div>

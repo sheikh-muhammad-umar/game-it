@@ -1,0 +1,18 @@
+#noinspection GraphQLUnresolvedReference,GraphQLMissingType
+
+input CreateSchoolInputs {
+	""" Name """
+	name: String!
+	""" Country Code """
+	country: String!
+	""" City """
+	city: String!
+}
+
+type Mutation {
+	""" Create school """
+	createSchool (
+		""" Input fields """
+		inputs: CreateSchoolInputs!
+	): School @auth(role: [TEACHER, SCHOOL_ADMIN]) @cost(complexity: 300)
+}

@@ -1,0 +1,39 @@
+<div style="width: 900px;">
+    <h3 style="padding-bottom: 30px;">Games</h3>
+
+    <!--button class="bg-primary" [routerLink]="['addstudent']"><i class="fa fa-user-plus"></i>Add a Student</button-->
+
+    <table class="table table-striped" style="border: none;width: 100%;">
+        <thead>
+            <tr>
+                <td class="title-column " style="width: 100px;">&nbsp;</td>
+                <td class="title-column " style="width: 220px;">Name</td>
+                <td class="title-column " style="width: 220px;">Skill</td>
+                <td class="title-column ">Assigned To</td>
+            </tr>
+        </thead>
+        <tr>
+            <td class="row-mid title"><img class="card-img-top img-fluid" src="assets/images/games/game1-stage1.png" alt="Card image cap"></td>
+            <td class="row-mid title">
+                <a [routerLink]="['/game/',1]" style="cursor: pointer;">Voyage of Ezzo & Gizmo</a>
+            </td>
+            <td class="row-mid title">Visual Skills</td>
+            <td>Ali C</td>
+        </tr>
+        <tr>
+            <td class="row-mid title"><img class="card-img-top img-fluid" src="assets/images/games/game1-stage2.png" alt="Card image cap"></td>
+            <td class="row-mid title"><a [routerLink]="['/game/',2]" style="cursor: pointer;">Confronting Aliens</a></td>
+            <td class="row-mid title">Spatial Skills</td>
+            <td>&nbsp;</td>
+        </tr>
+        <tr>
+            <td class="row-mid title"><img class="card-img-top img-fluid" src="assets/images/games/game1-stage3.png" alt="Card image cap"></td>
+            <td class="row-mid title"><a [routerLink]="['/game/',3]" style="cursor: pointer;">Stage 3</a></td>
+            <td class="row-mid title">Memory Skills</td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+    <div>
+        <router-outlet></router-outlet>
+    </div>
+</div>

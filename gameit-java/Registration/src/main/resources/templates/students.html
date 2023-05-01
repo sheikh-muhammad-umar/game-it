@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+ <meta charset="UTF-8"/>
+
+    <link th:rel="stylesheet" th:href="@{assets/bootstrap-datepicker/css/bootstrap-datepicker.css}"/>
+    <link th:rel="stylesheet" th:href="@{assets/bootstrap-datepicker/css/bootstrap-datepicker.standalone.css}"/>
+    <link th:rel="stylesheet" th:href="@{webjars/bootstrap/4.0.0-2/css/bootstrap.min.css} "/>
+    <link th:rel="stylesheet" th:href="@{webjars/font-awesome/5.11.2/css/all.css} "/>
+
+
+    <title>Guardian Profile</title>
+  </head>
+  <body>
+    <!-- Main Body of Page -->
+<div class="container">
+            <div class="row m-4">
+                <div class="col text-center border border-dark">
+             
+				
+                </div>
+            </div>
+            
+ 
+<div class="row m-4 border border-dark">
+                <div class="col-3 text-center m-3">
+                    <span class="h3">Add Student</span>
+                </div>
+                <div class="col-7 text-center m-3">
+                   <form action="#" th:action="@{/students}" th:object="${user}" method="POST" enctype="multipart/form-data">
+
+                        <div class="form-group row">
+                            <label for="username" class="col-3 col-form-label">
+                                UserName</label>
+                            <div class="col-9">
+                                <input type="text" name="username" 
+                                       id="username" class="form-control"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="firstName" class="col-3 col-form-label">
+                                First Name</label>
+                            <div class="col-9">
+                                <input type="text" name="firstname" 
+                                       id="firstName" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label for="lastName" class="col-3 col-form-label">
+                                Last Name</label>
+                            <div class="col-9">
+                                <input type="text" name="lastname" 
+                                       id="lastName" class="form-control"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="password" class="col-3 col-form-label">
+                                Password</label>
+                            <div class="col-9">
+                                <input type="text" name="password" 
+                                       id="password" class="form-control"/>
+                            </div>
+                        </div>
+
+
+ 
+              <div class="form-group row">
+            <div class="col-md-4 mt-5">
+                <label for="birthdate">Date of birth</label>
+                <div class="input-group date">
+                    <input type="text" class="form-control" name="birthdate" id="birthdate" autocomplete="off" field="*{birthdate}"/>
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+                        <div class="form-group row">
+                            <label for="school" class="col-3 col-form-label">
+                                School</label>
+                            <div class="col-9">
+                                <input type="text" name="school" 
+                                       id="school" class="form-control"/>
+                            </div>
+                        </div>
+
+
+                        <div class="form-group row">
+                            <label for="diagnoses" class="col-3 col-form-label">
+                                Diagnoses</label>
+                            <div class="col-9">
+                                <input type="text" name="diagnoses" 
+                                       id="diagnoses" class="form-control"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="country" class="col-3 col-form-label">
+                                Country</label>
+                            <div class="col-9">
+                                <input type="text" name="country" 
+                                       id="country" class="form-control"/>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="city" class="col-3 col-form-label">
+                                City</label>
+                            <div class="col-9">
+                                <input type="text" name="city" 
+                                       id="city" class="form-control"/>
+                            </div>
+                        </div>
+                        
+                        
+                      
+                      <div class="form-group row">
+                            <label for="photo" class="col-3 col-form-label">
+                                Photo</label>
+                            <div class="col-9">
+                                <input type="file" name="image" 
+                                       id="image" accept="image/png, image/jpeg" class="form-control"/>
+                            </div>
+                        </div>  
+                        
+                        
+                        <button type="submit" class="btn btn-primary">Add Student</button>
+                        
+                      </form>
+                      
+                      
+                      <form th:action="@{/logout}" method="post">
+                 <br>    <input type="submit" value="Logout" class="btn btn-primary"/>  
+                    </form>
+                    
+                </div>
+            </div>
+
+                        <div class="row m-4 border border-dark">
+                <div class="col text-center m-3">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>UserName</th>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Details</th>
+                                <th>Edit</th>
+                                <th>Delete</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="user : ${users}">
+                 <!--
+                             <tr th:each="student : ${students}">
+                              <td th:text="${student.id}">Student ID</td>   
+              <td th:text="${student.user}!=null? ${student.user.firstName}:'hiiiiii'">Student Username</td>  
+            -->
+                                <td th:text="${user.id}">Student ID</td>   
+                                <td th:text="${user.username}">Student Username</td>  
+                                <td th:text="${user.firstName}">Student First Name</td>
+                                <td th:text="${user.lastName}">Student Last Name</td>  
+                                
+                           <td><a href="#" th:href="@{/studentDetail(id=${user.id})}">Details</a></td>
+                           <td><a href="#" th:href="@{/editStudent(id=${user.id})}">Edit</a></td>
+                           <td><a href="#" th:href="@{/deleteStudent(id=${user.id})}">Delete</a></td>
+                            </tr>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div> 
+    <!-- End main body -->
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+ 
+ <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+<script th:src="@{assets/bootstrap-datepicker/js/bootstrap-datepicker.js}"></script>
+
+<script>
+    $('.input-group.date').datepicker({
+        autoclose: true,
+        todayHighlight: true,
+        format: "yyyy/mm/dd"
+    });
+</script>
+
+</body>
+</html>;

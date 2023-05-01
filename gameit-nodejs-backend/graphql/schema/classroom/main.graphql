@@ -1,0 +1,33 @@
+#noinspection GraphQLUnresolvedReference,GraphQLMissingType
+
+input CreateClassroomInputs {
+	""" School """
+	schoolId: PositiveInt!
+	""" Name """
+	name: String! @constraint(minLength: 5, maxLength: 30)
+	""" Grade """
+	grade: NonNegativeInt!
+}
+
+input UpdateClassroomInputs {
+	""" Class id """
+    id: PositiveInt!
+	""" Name """
+	name: String! @constraint(minLength: 5, maxLength: 30)
+	""" Grade """
+	grade: NonNegativeInt!
+}
+
+type Mutation {
+	""" Create classroom """
+	createClassroom (
+		""" Input fields """
+		inputs: CreateClassroomInputs!
+	): Classroom @auth(role: [TEACHER, SCHOOL_ADMIN]) @cost(complexity: 300)
+
+	""" Update classroom """
+	updateClassroom (
+		""" Input fields """
+		inputs: UpdateClassroomInputs!
+	): Void @auth(role: [TEACHER, SCHOOL_ADMIN]) @cost(complexity: 300)
+}

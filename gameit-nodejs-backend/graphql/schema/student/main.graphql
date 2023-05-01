@@ -1,0 +1,103 @@
+# noinspection GraphQLUnresolvedReference,GraphQLMissingType
+""" Studen Gender """
+enum StudentGender {
+	""" Boy """
+	BOY
+	""" Girl """
+	GIRL
+	""" Not Specified """
+	NOT_SPECIFIED
+}
+
+type Student {
+	""" ID """
+	id: PositiveInt!
+	""" Full name """
+	fullName: String!
+	""" Grade """
+	grade: NonNegativeInt
+	""" Class """
+	classroom: Classroom
+	""" DOB """
+	dob: Date!
+	""" Diagnoses """
+	diagnoses: [PositiveInt!]!
+}
+
+input CreateStudentByTeacherInputs {
+	""" Full name """
+	fullName: String!
+	""" Gender """
+	gender: StudentGender!
+	""" DOB """
+	dob: Date!
+	""" Grade """
+	gradeId: Int!
+	""" Class """
+	classId: PositiveInt!
+	""" Diagnoses """
+	diagnoses: [PositiveInt!]!
+}
+
+input CreateStudentByGuardianInputs {
+	""" Full name """
+	fullName: String!
+	""" Gender """
+	gender: StudentGender
+	""" DOB """
+	dob: Date!
+	""" Grade """
+	grade: NonNegativeInt!
+	""" Diagnoses """
+	diagnoses: [PositiveInt!]!
+	""" CountryCode """
+	nationality: String!
+	""" City """
+	city: String!
+}
+
+input UpdateStudentInputs {
+	""" ID """
+	id: PositiveInt!
+	""" Full name """
+	fullName: String!
+	""" DOB """
+	dob: Date!
+	""" Diagnoses """
+	diagnoses: [PositiveInt!]!
+}
+
+input AssignGameInputs {
+	""" Student ID """
+	studentId: PositiveInt!
+	""" Game ID """
+	gameId: PositiveInt!
+	""" Instructions """
+	instructions: String		
+}
+
+type Mutation {
+	""" Create student by teacher """
+	addStudentByTeacher (
+		""" Input fields """
+		inputs: CreateStudentByTeacherInputs!
+	): Student @auth(role: [TEACHER, SCHOOL_ADMIN]) @cost(complexity: 300)
+
+	""" Create student by guardian """
+	addStudentByGuardian (
+		""" Input fields """
+		inputs: CreateStudentByGuardianInputs!
+	): Student @auth(role: [GUARDIAN]) @cost(complexity: 300)
+
+	""" Update student """
+	updateStudent (
+		""" Input fields """
+		inputs: UpdateStudentInputs!
+	): Void @auth(role: [TEACHER, GUARDIAN]) @cost(complexity: 300)
+
+	""" Assign game to student """
+	assignGameToStudent (
+		""" Input fields """
+		inputs: AssignGameInputs!
+	): Void @auth(role: [TEACHER, GUARDIAN]) @cost(complexity: 300)
+}

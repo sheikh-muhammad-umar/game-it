@@ -1,0 +1,113 @@
+package gameIt.registration.models;
+
+import java.util.List;
+import java.util.Objects;
+
+import gameIt.registration.service.UserEntity;
+
+public class Student {
+	
+	private int id;
+    private String school;
+    private String diagnoses;
+    private String country;
+    private String city;
+    
+    private UserEntity userEntity;
+    
+    private User user;
+    private List<Guardian> guardians;
+    
+    
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getSchool() {
+		return school;
+	}
+	public void setSchool(String school) {
+		this.school = school;
+	}
+	public String getDiagnoses() {
+		return diagnoses;
+	}
+	public void setDiagnoses(String diagnoses) {
+		this.diagnoses = diagnoses;
+	}
+	public String getCountry() {
+		return country;
+	}
+	public void setCountry(String country) {
+		this.country = country;
+	}
+	public String getCity() {
+		return city;
+	}
+	public void setCity(String city) {
+		this.city = city;
+	}
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user2) {
+		this.user = user2;
+	}
+	public List<Guardian> getGuardians() {
+		return guardians;
+	}
+	public void setGuardians(List<Guardian> guardians) {
+		this.guardians = guardians;
+	}
+	
+	
+	
+	
+	public UserEntity getUserentity() {
+		return userEntity;
+	}
+	public void setUserEtity(UserEntity user2) {
+		this.userEntity = user2;
+	}
+//	@Override
+//	public int hashCode() {
+//		return Objects.hash(city, country, diagnoses, guardians, id, school, user);
+//	}
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (this == obj)
+//			return true;
+//		if (obj == null)
+//			return false;
+//		if (getClass() != obj.getClass())
+//			return false;
+//		Student other = (Student) obj;
+//		return Objects.equals(city, other.city) && Objects.equals(country, other.country)
+//				&& Objects.equals(diagnoses, other.diagnoses) && Objects.equals(guardians, other.guardians)
+//				&& id == other.id && Objects.equals(school, other.school) && Objects.equals(user, other.user);
+//	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(city, country, diagnoses, guardians, id, school, user, userentity);
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Student other = (Student) obj;
+		return Objects.equals(city, other.city) && Objects.equals(country, other.country)
+				&& Objects.equals(diagnoses, other.diagnoses) && Objects.equals(guardians, other.guardians)
+				&& id == other.id && Objects.equals(school, other.school) && Objects.equals(user, other.user)
+				&& Objects.equals(userEntity, other.userEntity);
+	}
+
+    
+    
+
+}

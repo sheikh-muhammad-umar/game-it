@@ -1,0 +1,85 @@
+<app-nav-bar></app-nav-bar>
+
+<section class="section section-intro context-dark" style="background-color:#F79939">
+    <div class="intro-bg" style="background: url(assets/images/intro-bg-1.png) no-repeat;background-size:cover;background-position: top center;"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 text-center">
+                <h1 class="font-weight-bold wow fadeInLeft" style="visibility: visible; animation-name: fadeInLeft;"></h1>
+                <p class="intro-description wow fadeInRight" style="visibility: visible; animation-name: fadeInRight;"></p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section section-md bg-white">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="row row-50">
+                    <div class="col-12">
+                        <article>
+                            <h3 class="wow fadeInLeft text-capitalize solution devider-bottom" data-wow-delay=".3s" [innerHTML]="'_What_WE_Do_Page_Title'|translate"></h3>
+                            <p class="font-weight-bold text-gray-dark" translate>_What_WE_Do_Page_FirstLine</p>
+                            <p translate>_What_WE_Do_Page_SecondLine</p>
+                            <p translate>_What_WE_Do_Page_ThirdLine</p>
+                            <u style="text-decoration: none;">
+                <li translate>_What_WE_Do_Page_FirstPoint</li>
+                <li translate>_What_WE_Do_Page_SecondPoint</li>
+                <li translate>_What_WE_Do_Page_ThirdPoint</li>
+                </u>
+                        </article>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!--Owl Carousel-->
+<section class="section section-md bg-gray-lighten">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-10">
+                <h3 class="wow fadeInLeft text-capitalize text-center" data-wow-delay=".3s" [innerHTML]="'_Famous_People_Had_Learning_Challenges'|translate"></h3>
+                <div class="owl-carousel review-carousel" data-rtl="true" data-items="1" data-sm-items="1" data-md-items="1" data-lg-items="1" data-xl-items="1" data-xxl-items="1" data-dots="true" data-nav="false" data-stage-padding="0" data-loop="true" data-margin="0"
+                    data-mouse-drag="true" data-autoplay="false">
+                    <div class="item">
+                        <div class="item-preview wow fadeInDown" data-wow-delay=".2s"><img src="assets/images/mohammed-ali.jpg" alt="" width="216" height="108" />
+                        </div>
+                        <div class="item-description wow fadeInUp" data-wow-delay=".3s">
+                            <p translate class="owl-quote">_Mohammed_Ali_Quote</p>
+                            <div class="item-subsection"><span class="item-subsection-title devider-left" translate>_Mohammed_Ali</span></div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="item-preview wow fadeInDown" data-wow-delay=".2s"><img src="assets/images/albert-einstein.jpg" alt="" width="216" height="108" />
+                        </div>
+                        <div class="item-description wow fadeInUp" data-wow-delay=".3s">
+                            <p translate class="owl-quote">Albert_Einstein_Quote</p>
+                            <div class="item-subsection"><span class="item-subsection-title devider-left" translate>_Albert_Einstein</span></div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="item-preview wow fadeInDown" data-wow-delay=".2s"><img src="assets/images/tom-cruise.jpg" alt="" width="216" height="108" />
+                        </div>
+                        <div class="item-description wow fadeInUp" data-wow-delay=".3s">
+                            <p translate class="owl-quote">_Tom_Cruise_Quote</p>
+                            <div class="item-subsection"><span class="item-subsection-title devider-left" translate>_Tom_Cruise</span></div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="item-preview wow fadeInDown" data-wow-delay=".2s"><img src="assets/images/thomas-edison.jpg" alt="" width="216" height="108" />
+                        </div>
+                        <div class="item-description wow fadeInUp" data-wow-delay=".3s">
+                            <p translate class="owl-quote">_Thomas_Edison_Quote</p>
+                            <div class="item-subsection"><span class="item-subsection-title devider-left" translate>_Thomas_Edison</span></div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<app-footer></app-footer>

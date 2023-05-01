@@ -1,0 +1,71 @@
+.account2 {
+    padding: 38px;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -moz-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -moz-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -moz-box-orient: vertical;
+    -moz-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+
+@media (max-width: 1169px) {
+    .account2 {
+        display: none;
+    }
+}
+
+.account2 .name {
+    text-transform: capitalize;
+    font-weight: 500;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 5px
+}
+
+.account2>a {
+    font-size: 14px;
+    color: #999
+}
+
+.account2>a:hover {
+    color: #666
+}
+
+.profile {
+    width: 70%
+}
+
+.profile img {
+    border-radius: 50%;
+    width: 100%;
+}
+
+.scroll-sidebar {
+    height: calc(100% - 260px);
+}
+
+.modal-backdrop {
+    z-index: 1040 !important;
+}
+
+.modal-content {
+    border-radius: 0.5rem;
+    margin: 2px auto;
+    z-index: 1100 !important;
+}

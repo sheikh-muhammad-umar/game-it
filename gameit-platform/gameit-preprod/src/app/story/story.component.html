@@ -1,0 +1,35 @@
+<app-nav-bar></app-nav-bar>
+
+<section class="section section-intro context-dark">
+    <div class="intro-bg" style="background: url(assets/images/intro-bg-1.png) no-repeat;background-size:cover;background-position: top center;"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 text-center">
+                <h1 class="font-weight-bold wow fadeInLeft" style="visibility: visible; animation-name: fadeInLeft;"></h1>
+                <p class="intro-description wow fadeInRight" style="visibility: visible; animation-name: fadeInRight;"></p>
+            </div>
+        </div>
+    </div>
+</section>
+<!--About-->
+<section class="section section-sm position-relative" id="about">
+    <div class="container">
+        <div class="row row-30">
+            <div class="col-lg-6">
+                <div class="block-decorate-img wow fadeInLeft" data-wow-delay=".2s"><img class="about" src="assets/images/about-570x703.png" alt="" width="570" height="351" />
+                </div>
+            </div>
+            <div class="col-lg-6 col-12">
+                <div class="block-sm offset-top-45">
+                    <h3 class="wow fadeInLeft text-capitalize devider-bottom" data-wow-delay=".3s" [innerHTML]="'_our_story_title_'|translate"></h3>
+                    <p class="font-weight-bold text-gray-dark" translate>_Our_story_Primary_FirstLine</p>
+                    <p class="font-weight-bold text-gray-dark" translate>_Our_story_Primary_SecondLine</p>
+                    <p><span class="font-weight-bold text-gray-dark" translate>_Our_story_Primary_ThirdLine1</span>&nbsp;<span translate>_Our_story_Primary_ThirdLine2</span></p>
+                    <p translate>_Our_story_Primary_FourthLine</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-footer></app-footer>

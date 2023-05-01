@@ -1,0 +1,38 @@
+<div id="mySidebar" class="sidebar ">
+    <a class="closebtn" (click)="closeNav()">×</a>
+    <h4>Assign Game</h4>
+
+    <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+        <div class="form-group">
+            <label for="studentId">User</label>
+            <select class="form-control" name="studentId" [(ngModel)]="form.studentId" required #studentId="ngModel">
+                <option disabled [ngValue]="null">Select a user</option>
+                <option *ngFor="let student of students" [value]="student.id">
+                    {{student.firstName}} {{student.lastName}}
+                  </option>
+            </select>
+            <div class="alert-danger" *ngIf="studentId.errors && f.submitted">
+                <div *ngIf="studentId.errors['required']">Please select a user</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="instructions">Instructions</label>
+            <textarea type="text" class="form-control" name="instructions" [(ngModel)]="form.instructions" minlength="3" maxlength="500" #instructions="ngModel"></textarea>
+        </div>
+
+        <div class="form-group">
+            <button class="btn btn-primary">Assign</button>
+        </div>
+
+        <div class="alert alert-warning" *ngIf="f.submitted && isAssignFailed">
+            Save failed!<br />{{ errorMessage }}
+        </div>
+
+    </form>
+    <div *ngIf="isSuccessful">
+        Successfully added!
+    </div>
+
+</div>

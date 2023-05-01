@@ -1,0 +1,49 @@
+# noinspection GraphQLUnresolvedReference,GraphQLMissingType
+""" Game sessions sort orders """
+enum GameSessionsSortOrder {
+	""" Natural order """
+	NATURAL
+	""" ID ascending """
+	ID_ASC
+	""" ID descending """
+	ID_DESC
+}
+
+type GameSession {
+   	""" Game Session Key """
+	sessionId: String!
+	""" Type """
+	type: String!
+   	""" Levels """
+	levels: JSON!
+}
+
+input GameSessionListFilters {
+	""" Student ID """
+	studentId: PositiveInt
+	""" Game ID """
+	gameId: PositiveInt
+	""" Type """
+	type: String
+	""" Date From """
+	dateFrom: String
+	""" Date From """
+	dateTo: String
+}
+
+type GameSessionsConnection {
+	""" Total nodes """
+	totalCount: Int @cost(complexity: 1)
+	""" Nodes collection """
+	nodes: [GameSession!]
+}
+
+type Query {
+	""" Get Game session listing """
+	listGameSessions (
+		""" Sort order """
+		sortOrder: [GameSessionsSortOrder] = [ID_ASC],
+		""" Meta fields selection """
+		filters: GameSessionListFilters
+	): GameSessionsConnection @auth(role: [TEACHER, SCHOOL_ADMIN, GUARDIAN]) @cost(complexity: 50, multipliers: ["pager.limit", "sortOrder"])
+}

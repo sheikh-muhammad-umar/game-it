@@ -1,0 +1,73 @@
+""" Shopping cart sort order """
+enum ShoppingCartSortOrder {
+	NATURAL
+	ADDED_AT_ASC
+	ADDED_AT_DESC
+}
+
+""" Shopping cart listing connection """
+type ShoppingCartItemsConnection {
+	""" Total nodes """
+	totalCount: Int @cost(complexity: 10)
+	""" Pagination info """
+	pageInfo: PageInfo!
+	""" Nodes collection """
+	nodes: [ShoppingCartItem!]
+}
+
+
+""" Shopping cart item """
+type ShoppingCartItem {
+	" ID "
+	id: PositiveInt!
+	" Product details "
+	product: Product!
+	" Product details "
+	quantity: PositiveInt!
+	" Product type (Subscription, Game, Prepaid etc...) "
+	type: String!
+	" Coins (amount) "
+	coins: NonNegativeInt!
+	" Added date "
+	addedAt: DateTime
+}
+
+""" Shopping cart shoppingCart """
+type ShoppingCartQuery {
+	""" Get shopping cart items listing """
+	listItems (
+		""" Pagination props """
+		pager: PagerOptions = {},
+		""" Sort order """
+		sortOrder: [ShoppingCartSortOrder] = [ADDED_AT_DESC],
+		""" Meta fields selection """
+		metaPaths: [String!]
+	): ShoppingCartItemsConnection
+		@auth(role: [GUARDIAN])
+		@cost(complexity: 50, multipliers: ["pager.limit", "sortOrder"])
+}
+
+""" Shopping cart actions """
+type ShoppingCartActions {
+	" Add a product to shopping cart "
+	addItem (
+		" Product ID "
+		productId: PositiveInt!
+	): Void @cost(complexity: 600)
+
+	" Remove item from shopping cart "
+	removeItem (
+		" Item ID "
+		itemId: PositiveInt!
+	): Boolean @cost(complexity: 300)
+}
+
+type Query {
+	" Shopping Cart queries "
+	shoppingCart: ShoppingCartQuery @auth(role: [GUARDIAN])
+}
+
+type Mutation {
+	" Shopping Cart actions "
+	shoppingCart: ShoppingCartActions @auth(role: [GUARDIAN])
+}

@@ -1,0 +1,56 @@
+# noinspection GraphQLUnresolvedReference,GraphQLMissingType
+
+""" Classrooms sort orders """
+enum ClassroomsSortOrder {
+	""" Natural order """
+	NATURAL
+	""" Name ascending """
+	NAME_ASC
+	""" Name descending """
+	NAME_DESC
+}
+
+type Classroom {
+	""" ID """
+	id: PositiveInt!
+	""" Classroom name """
+	name: String!
+	""" Grade """
+	grade: NonNegativeInt!
+	""" School """
+	school: School!
+	""" Class code """
+	code: String!
+}
+
+type ClassroomsConnection {
+	""" Total nodes """
+	totalCount: Int @cost(complexity: 1)
+	""" Pagination info """
+	pageInfo: PageInfo!
+	""" Nodes collection """
+	nodes: [Classroom!]
+}
+
+input ClassroomListFilters {
+	""" Contains name """
+	name: String @constraint(minLength: 2, maxLength: 40),
+	""" School ID """
+	schoolId: PositiveInt,
+	""" Class code """
+	code: String
+}
+
+type Query {
+	""" Get classrooms listing """
+	listClassrooms (
+		""" Pagination props """
+		pager: PagerOptions = {},
+		""" Sort order """
+		sortOrder: [ClassroomsSortOrder] = [NAME_ASC],
+		""" Meta fields selection """
+		metaPaths: [String!]
+		""" Attributes filter """
+		filters: ClassroomListFilters
+	): ClassroomsConnection @auth(role: [TEACHER, SCHOOL_ADMIN]) @cost(complexity: 50, multipliers: ["pager.limit", "sortOrder"])
+}

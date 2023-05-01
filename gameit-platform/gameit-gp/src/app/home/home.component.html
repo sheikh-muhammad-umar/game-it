@@ -1,0 +1,64 @@
+<div class="row">
+    <div class="col-sm-12 col-md-6 col-xl-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex d-lg-flex d-md-block align-items-center">
+                    <div>
+                        <h3 class="text-dark mb-1 font-weight-medium">{{totalTimePlayed}}</h3>
+                        <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate" translate>_Student_Dashboard_TotalPlayTime</h6>
+                    </div>
+                    <div class="ml-auto mt-md-3 mt-lg-0">
+                        <span class="opacity-7 text-muted"><i data-feather="clock"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-xl-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex d-lg-flex d-md-block align-items-center">
+                    <div>
+                        <h3 class="text-dark mb-1 w-100 text-truncate font-weight-medium">{{totalMistakes}}</h3>
+                        <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate" translate>_Student_Dashboard_TotalMistakes</h6>
+                    </div>
+                    <div class="ml-auto mt-md-3 mt-lg-0">
+                        <span class="opacity-7 text-muted"><i data-feather="alert-triangle"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-xl-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex d-lg-flex d-md-block align-items-center">
+                    <div>
+                        <h3 class="text-dark mb-1 w-100 text-truncate font-weight-medium">{{totalWhiteCrystal}}</h3>
+                        <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate" translate>_Student_Dashboard_TotalWhiteCrystals</h6>
+                    </div>
+                    <div class="ml-auto mt-md-3 mt-lg-0">
+                        <span class="opacity-7 text-muted"><i data-feather="award"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-xl-3">
+        <div class="card">
+            <div class="card-body">
+                <div class="d-flex d-lg-flex d-md-block align-items-center">
+                    <div>
+                        <h3 class="text-dark mb-1 font-weight-medium">{{totalBlueCrystal}}</h3>
+                        <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate" translate>_Student_Dashboard_TotalBlueCrystals</h6>
+                    </div>
+                    <div class="ml-auto mt-md-3 mt-lg-0">
+                        <span class="opacity-7 text-muted"><i data-feather="gift"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<app-studentgames (newItemEvent)="updateGameId($event)" [selectedStudentId]="selectedStudentId"></app-studentgames>

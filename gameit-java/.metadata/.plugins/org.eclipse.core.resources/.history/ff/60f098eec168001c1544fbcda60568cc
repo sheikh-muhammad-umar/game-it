@@ -1,0 +1,25 @@
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/gameit-pf?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
+spring.datasource.username=root
+spring.datasource.password=root
+
+
+###### JPA Properties ######
+spring.jpa.properties.hibernate.dialect = org.hibernate.dialect.MySQL5Dialect
+spring.jpa.generate-ddl = true
+spring.jpa.show-sql = true
+
+###### Email Properties ######
+#smtp mail properties
+spring.mail.host=smtp.gmail.com
+spring.mail.port=587
+spring.mail.username=mahyhanysalama@gmail.com
+spring.mail.password= Fatma@1380GO
+spring.mail.properties.mail.smtp.auth=true
+spring.mail.properties.mail.smtp.starttls.enable=true
+
+
+# multipart 
+multipart.enabled=true
+spring.http.multipart.max-file-size=500000KB
+spring.http.multipart.max-request-size=500000KB

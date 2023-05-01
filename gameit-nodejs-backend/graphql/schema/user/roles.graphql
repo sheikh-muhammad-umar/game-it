@@ -1,0 +1,16 @@
+type UserRoleItem {
+	""" Name """
+	name: String!
+}
+
+type UserRolesListConnection {
+	""" Total count """
+	totalCount: Int @cost(complexity: 50)
+	""" Collection of nodes """
+	nodes: [UserRoleItem!]
+}
+
+type Query {
+	""" Fetch user roles list """
+	userRolesList: UserRolesListConnection @cost(complexity: 100)
+}

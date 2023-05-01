@@ -1,0 +1,9 @@
+/node_modules
+.idea
+.DS_Store
+*.*bak
+package-lock.json
+.env
+.env.local
+.vscode/settings.json
+.env.local.bcp

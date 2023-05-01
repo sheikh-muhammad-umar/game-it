@@ -1,0 +1,102 @@
+<h4>Account Profile</h4>
+<div *ngIf="isDeleted">
+    Deleted
+</div>
+<div *ngIf="!isDeleted">
+    <div style="border-bottom: 1px solid #e8eef3;">
+        <button class="bg-primary" data-toggle="modal" data-target="#exampleModalCenter"><i class="fa fa-user-times"></i>Delete</button>
+        <button class="bg-primary" (click)="isReadOnly=false"><i class="fa fa-edit"></i>Edit</button>
+    </div>
+    <div *ngIf="!isReadOnly">
+        <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+            <div>
+                <div class="form-group" style="float: left; margin-right: 20px;">
+                    <label for="firstname">First Name</label>
+                    <input type="text" class="form-control" name="firstname" [(ngModel)]="form.firstName" required minlength="3" maxlength="200" #firstname="ngModel" />
+                    <div class="alert-danger" *ngIf="firstname.errors && f.submitted">
+                        <div *ngIf="firstname.errors['required']">First name is required</div>
+                        <div *ngIf="firstname.errors['minlength']">
+                            First name must be at least 3 characters
+                        </div>
+                        <div *ngIf="firstname.errors['maxlength']">
+                            First name must be at most 200 characters
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group" style="float: left;">
+                    <label for="lastname">Last Name</label>
+                    <input type="text" class="form-control" name="lastname" [(ngModel)]="form.lastName" required minlength="3" maxlength="200" #lastname="ngModel" />
+                    <div class="alert-danger" *ngIf="lastname.errors && f.submitted">
+                        <div *ngIf="lastname.errors['required']">Last name is required</div>
+                        <div *ngIf="lastname.errors['minlength']">
+                            Last name must be at least 3 characters
+                        </div>
+                        <div *ngIf="lastname.errors['maxlength']">
+                            Last name must be at most 200 characters
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="phone" translate>Phone Number</label>
+                <input type="phone" class="form-control" name="phone" [(ngModel)]="form.phoneNo" phone #phone="ngModel" />
+                <div class="alert-danger" *ngIf="phone.errors && f.submitted">
+                    <div *ngIf="phone.errors['phone']" translate>Phone number must be valid</div>
+                </div>
+            </div>
+            <div class="form-group" style="clear: both;">
+                <label for="username">Username</label>
+                <input type="text" class="form-control" name="username" [(ngModel)]="form.username" required minlength="3" maxlength="200" #username="ngModel" />
+                <div class="alert-danger" *ngIf="username.errors && f.submitted">
+                    <div *ngIf="username.errors['required']">Username is required</div>
+                    <div *ngIf="username.errors['minlength']">
+                        Username must be at least 3 characters
+                    </div>
+                    <div *ngIf="username.errors['maxlength']">
+                        Username must be at most 200 characters
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <button class="btn btn-primary">Save</button>
+            </div>
+
+            <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+                Save failed!<br />{{ errorMessage }}
+            </div>
+
+        </form>
+        <div *ngIf="isSuccessful">
+            Saved
+        </div>
+    </div>
+    <div *ngIf="isReadOnly">
+        <div>
+            <div>
+                <div class="form-group" style="float: left; margin-right: 20px;">
+                    <label for="firstname">First Name</label>
+                    <input type="text" class="form-control readonly" name="firstname" [(ngModel)]="form.firstName" readonly #firstname="ngModel" />
+                </div>
+                <div class="form-group" style="float: left;">
+                    <label for="lastname">Last Name</label>
+                    <input type="text" class="form-control readonly" name="lastname" [(ngModel)]="form.lastName" readonly #lastname="ngModel" />
+                </div>
+                <div class="form-group">
+                    <label for="phone" translate>Phone Number</label>
+                    <input type="phone" class="form-control readonly" name="phone" [(ngModel)]="form.phoneNo" readonly phone #phone="ngModel" />
+
+                </div>
+                <div class="form-group" style="clear: both;">
+                    <label for="username">Username</label>
+                    <input type="text" class="form-control readonly" name="username" [(ngModel)]="form.username" readonly #username="ngModel" />
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+</div>

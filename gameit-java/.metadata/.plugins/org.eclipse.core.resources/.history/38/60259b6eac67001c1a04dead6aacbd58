@@ -1,0 +1,197 @@
+package gameIt.registration.controller;
+
+import java.io.IOException;
+import java.security.Principal;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+
+import gameIt.registration.dao.GuardianDao;
+import gameIt.registration.dao.StudentDao;
+import gameIt.registration.dao.UserDao;
+import gameIt.registration.models.Guardian;
+import gameIt.registration.models.Student;
+import gameIt.registration.models.User;
+import gameIt.registration.service.FileUploadUtil;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+@Controller
+public class StudentController {
+
+	@Autowired
+	UserDao userDao;
+
+	@Autowired
+	GuardianDao guardianDao;
+
+	@Autowired
+	StudentDao studentDao;
+
+	
+	 @PostMapping("students")
+		public String addStudent(String username, String firstname, String lastname, String password,  String school, HttpServletRequest request, 
+				String diagnoses, String country, String city,  @RequestParam("image") MultipartFile multipartFile, Principal principal) throws ParseException, IOException {
+
+		    String name = principal.getName(); //get logged in username
+	        int guardianId = userDao.getUserByUserName(name).getId();
+			
+			User user = new User();
+			
+			String encodedPassword = bCryptPasswordEncoder.encode(password);
+			user.setPassword(encodedPassword);
+			
+			user.setUsername(username);
+			user.setFirstName(firstname);
+			user.setLastName(lastname);
+			user.setUserType("student");        
+			
+			User addedUser = userDao.addUser(user);
+
+			Student student = new Student();
+			
+			String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+	        student.setPhoto(fileName);
+	        
+	        System.out.println(fileName);
+	        
+	        String uploadDir = "user-photos/" + addedUser.getId();
+			 
+	        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+	        
+			student.setUser(addedUser);
+			
+			
+			if (request.getParameter("birthdate").equals("")) {
+				student.setBirthdate(null); 
+			}
+			else {
+				
+			 try {
+
+			        Date date=new SimpleDateFormat("yyyy/MM/dd").parse(request.getParameter("birthdate"));  
+
+			        student.setBirthdate(date); 
+			        
+			        } catch (ParseException e){
+			        
+			        	SimpleDateFormat in = new SimpleDateFormat("yyyy-MM-dd");
+			        	String parameter = request.getParameter("birthdate");
+			        	Date date = in.parse(parameter);
+				        student.setBirthdate(date); 
+
+			        }
+			}
+		        
+			student.setSchool(school);
+			student.setDiagnoses(diagnoses);
+			student.setCountry(country);
+			student.setCity(city);
+
+
+			studentDao.addStudent(student, guardianId);
+
+			return "redirect:/students";
+		}
+	 
+
+	@GetMapping("students")
+	public String displayStudents(Model model, Principal principal) {
+
+		String name = principal.getName(); // get logged in username
+		int id = userDao.getUserByUserName(name).getId();
+		List<Student> students = studentDao.getStudentsForGuardian(id);
+
+		List<User> users = new ArrayList<User>();
+
+		for (Student student : students) {
+			users.add(userDao.getUserById(student.getId()));
+		}
+
+		model.addAttribute("users", users);
+		return "students";
+	}
+
+	@GetMapping("deleteStudent")
+	public String deleteStudent(HttpServletRequest request) {
+		int id = Integer.parseInt(request.getParameter("id"));
+		userDao.deleteUserById(id);
+		return "redirect:/students";
+	}
+
+	@GetMapping("editStudent")
+	public String editStudent(HttpServletRequest request, Model model) {
+		int id = Integer.parseInt(request.getParameter("id"));
+
+		User user = userDao.getUserById(id);
+		Student student = studentDao.getStudentById(id);
+
+		model.addAttribute("user", user);
+		model.addAttribute("student", student);
+
+		return "editStudent";
+	}
+
+	@PostMapping("editStudent")
+	public String performEditStudent(HttpServletRequest request) throws ParseException {
+		int id = Integer.parseInt(request.getParameter("id"));
+
+		User user = userDao.getUserById(id);
+
+
+		Student student = studentDao.getStudentById(id);
+
+		user.setUsername(request.getParameter("username"));
+		user.setFirstName(request.getParameter("firstname"));
+		user.setLastName(request.getParameter("lastname"));
+
+		try {
+
+			Date date = new SimpleDateFormat("yyyy/MM/dd").parse(request.getParameter("birthdate"));
+
+			student.setBirthdate(date);
+
+		} catch (ParseException e) {
+
+			SimpleDateFormat in = new SimpleDateFormat("yyyy-MM-dd");
+			String parameter = request.getParameter("birthdate");
+			Date date = in.parse(parameter);
+		}
+
+
+		student.setSchool(request.getParameter("school"));
+		student.setDiagnoses(request.getParameter("diagnoses"));
+		student.setCountry(request.getParameter("country"));
+		student.setCity(request.getParameter("city"));
+
+		userDao.updateUser(user);
+
+		studentDao.updateStudent(student, id);
+
+		return "redirect:/students";
+	}
+
+	@GetMapping("studentDetail")
+	public String studentDetail(Integer id, Model model) {
+		User user = userDao.getUserById(id);
+		Student student = studentDao.getStudentById(id);
+		model.addAttribute("user", user);
+		model.addAttribute("student", student);
+		return "studentDetail";
+	}
+
+	
+}

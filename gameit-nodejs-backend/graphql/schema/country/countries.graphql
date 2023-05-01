@@ -1,0 +1,17 @@
+type Country {
+	code: String!
+	name: String!
+}
+
+type CountriesConnection {
+	totalCount: Int @cost(complexity: 1)
+	nodes: [Country!]
+}
+
+type Query {
+	""" Fetch countries list """
+	countries (
+		""" Fetch their native name / English name only """
+		native: Boolean = false
+	): CountriesConnection @cost(complexity: 100)
+}

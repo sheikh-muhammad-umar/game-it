@@ -1,0 +1,43 @@
+[{
+        "id": 1,
+        "title": "The Adventure of Gizmo and Azzo",
+        "description": "The start of the journey for Gizmo and Azzo, entering the city after the alien invasion. Azzo's family along all humans on earth have been taken by aliens. Azzo with the help of Gismo will complete puzzles and fun gameplay obstacles, must find a way to rescue his family.",
+        "skill": {
+            "title": "Attention and Listening",
+            "description": "We train the player's focus and attention span. The player will be engaged in a game environment while enhancing their cognitive abilities."
+        },
+        "levels": [
+            { "level": "easy", "activityTotal": 7, "whiteCrystalTotal": 42 },
+            { "level": "medium", "activityTotal": 3, "whiteCrystalTotal": 18 },
+            { "level": "hard", "activityTotal": 4, "whiteCrystalTotal": 24 }
+        ]
+    },
+    {
+        "id": 2,
+        "title": "Saving The Energy Lab",
+        "description": "The second part of the adventure for Azzo and Gismo, they stumble across a laboratory where they have to complete puzzles, defeat aliens and rescue civilians.",
+        "skill": {
+            "title": "Following Instructions",
+            "description": "In this stage the player is trained to distinguish between different shapes and colors. With added abilities such as firing laser beams, the player will always have something to do that brighten the gameplay experience."
+        },
+        "levels": [
+            { "level": "easy", "activityTotal": 1, "whiteCrystalTotal": 6 },
+            { "level": "medium", "activityTotal": 9, "whiteCrystalTotal": 54 },
+            { "level": "hard", "activityTotal": 2, "whiteCrystalTotal": 12 }
+        ]
+    },
+    {
+        "id": 3,
+        "title": "Searching for the Spaceship",
+        "description": "At this part of Azzo and Gismo's journey, they find themselves in spacecraft hanger where they must find their way to the alien spaceship, to find Ezo's parents. They must defeat aliens who are patrolling and ready to fight back.",
+        "skill": {
+            "title": "Listening Memory",
+            "description": "In this stage the player is trained on memory skills, along with the all skills practiced from the last 2 stages. Every time the player plays through the 3 stages, their attention and cognitive abilities get stronger."
+        },
+        "levels": [
+            { "level": "easy", "activityTotal": 2, "whiteCrystalTotal": 12 },
+            { "level": "medium", "activityTotal": 2, "whiteCrystalTotal": 12 },
+            { "level": "hard", "activityTotal": 4, "whiteCrystalTotal": 24 }
+        ]
+    }
+]

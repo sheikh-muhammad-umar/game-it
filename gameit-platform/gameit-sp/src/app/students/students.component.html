@@ -1,0 +1,23 @@
+<div style="width: 900px;">
+    <h3 style="padding-bottom: 30px;">Students</h3>
+
+    <!--button class="bg-primary" [routerLink]="['addstudent']"><i class="fa fa-user-plus"></i>Add a Student</button-->
+
+    <table class="table table-striped" style="border: none;width: 100%;">
+        <thead>
+            <tr>
+                <td class="title-column " style="width: 220px;">First Name</td>
+                <td class="title-column " style="width: 220px;">Last Name</td>
+                <td class="title-column "></td>
+            </tr>
+        </thead>
+        <tr *ngFor="let student of students">
+            <td class="row-mid title"><a [routerLink]="['student/',student.id]" style="cursor: pointer;"> {{student.firstName}}</a></td>
+            <td class="row-mid title">{{student.lastName}}</td>
+            <td>&nbsp;</td>
+        </tr>
+    </table>
+    <div>
+        <router-outlet></router-outlet>
+    </div>
+</div>

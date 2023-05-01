@@ -1,0 +1,30 @@
+<h3 style="text-align: center;" class="page-title text-truncate text-dark font-weight-medium mb-1">
+    Please download and install Gameit App to your Windows Desktop first to start playing</h3>
+<h3 style="text-align: center;">
+    <a href="/api/student/download?downloadGame=GameitSetup.exe&studentGameId=2">
+        <img src="assets/images/install.png" style="width:32px"> Install Gameit App</a>
+</h3>
+<div class="row">
+    <!-- column -->
+    <div class="col-lg-4 col-md-6" *ngFor="let game of games">
+        <!-- Card -->
+        <div class="card">
+            <img class="card-img-top img-fluid" src="assets/images/games/game1-stage{{game.id}}.png" alt="{{game.title}}">
+            <div class="card-body">
+                <h3 class="card-title">{{game.title}}</h3>
+                <h5 class="card-subtitle mb-2 text-muted">{{game.skill.title}}</h5>
+                <p class="card-text">{{game.description}}</p>
+
+                <div *ngIf="gameInstructions(game.id)>''">
+                    <h4 class="card-title">Note from Guardian:</h4>
+                    <p class="card-text">{{gameInstructions(game.id)}}</p>
+                </div>
+
+                <a [href]="sanitize('gameit://B03C1776-A16D-4A83-8AA3-00CA5465947C/stage' + game.id +'/' + gameSessionKey(game.id) + '/BMCRLC')" class="btn btn-primary" style="margin-top: 10px;">Play</a>
+
+            </div>
+        </div>
+        <!-- Card -->
+    </div>
+    <!-- column -->
+</div>

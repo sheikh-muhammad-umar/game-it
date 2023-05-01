@@ -1,0 +1,19 @@
+# Base Schema
+
+scalar Date
+scalar Void
+scalar Time
+scalar DateTime
+scalar JSON
+scalar Upload
+
+scalar NonPositiveInt
+scalar PositiveInt
+scalar NonNegativeInt
+scalar NegativeInt
+scalar NonPositiveFloat
+scalar PositiveFloat
+scalar NonNegativeFloat
+scalar NegativeFloat
+scalar EmailAddress
+scalar URL

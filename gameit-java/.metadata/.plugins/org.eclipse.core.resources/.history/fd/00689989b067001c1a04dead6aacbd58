@@ -1,0 +1,98 @@
+package gameIt.registration.dao;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import gameIt.registration.models.Guardian;
+
+@Repository
+public class GuardianDaoDB implements GuardianDao {
+
+	@Autowired
+	JdbcTemplate jdbc;
+
+	@Override
+	public Guardian getGuardianById(int id) {
+		 try {
+	            final String SELECT_GUARDIAN_BY_ID = "SELECT * FROM guardian WHERE GuardianID = ?";
+	            return jdbc.queryForObject(SELECT_GUARDIAN_BY_ID, new GuardianMapper(), id);
+	        } catch (DataAccessException ex) {
+	            return null;
+	        }
+	}
+
+	@Override
+	public List<Guardian> getAllGuardians() {
+		final String SELECT_ALL_GUARDIANS = "SELECT * FROM guardian";
+        return jdbc.query(SELECT_ALL_GUARDIANS, new GuardianMapper());
+	}
+
+	@Override
+	@Transactional
+	public Guardian addGuardian(Guardian guardian) {
+		 final String INSERT_GUARDIAN = "INSERT INTO guardian(PhoneNumber, Payment) "
+	                + "VALUES(?,?)";
+	        jdbc.update(INSERT_GUARDIAN,
+	                guardian.getPhoneNo(),
+	                guardian.getPaymentInfo());
+	        
+	        int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
+	        guardian.setId(newId);
+	        return guardian;
+	}
+
+	@Override
+	public void updateGuardian(Guardian guardian) {
+		final String UPDATE_GUARDIAN = "UPDATE guardian SET PhoneNumber = ?, Payment = ? "
+                + "WHERE GuardianID = ?";
+        jdbc.update(UPDATE_GUARDIAN,
+        		guardian.getPhoneNo(),
+        		guardian.getPaymentInfo(),
+        		guardian.getId());
+	}
+
+	@Override
+    @Transactional
+	public void deleteGuardianById(int id) {
+		final String DELETE_STUDENT_GUARDIAN = "DELETE FROM guardiantostudent WHERE GuardianID = ?";
+        jdbc.update(DELETE_STUDENT_GUARDIAN, id);
+        
+        final String DELETE_GUARDIAN = "DELETE FROM guardian WHERE GuardianID = ?";
+        jdbc.update(DELETE_GUARDIAN, id);
+	}
+
+	public static final class GuardianMapper implements RowMapper<Guardian> {
+
+        @Override
+        public Guardian mapRow(ResultSet rs, int index) throws SQLException {
+        	Guardian guardian = new Guardian();
+            guardian.setId(rs.getInt("GuardianID"));
+            guardian.setPhoneNo(rs.getInt("PhoneNumber"));
+            guardian.setPaymentInfo(rs.getString("Payment"));
+
+            return guardian;
+        }
+    }
+
+	@Override
+	public Guardian addGuardianId(int id) {
+		Guardian guardian = new Guardian();
+		final String INSERT_GUARDIAN = "INSERT INTO guardian(GuardianID) "
+                + "VALUES(?)";
+        jdbc.update(INSERT_GUARDIAN, id);
+        
+        guardian.setId(id);
+        return guardian;
+	}	
+	
+	
+}
+

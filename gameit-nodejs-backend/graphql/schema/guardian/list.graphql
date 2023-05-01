@@ -1,0 +1,70 @@
+# noinspection GraphQLUnresolvedReference,GraphQLMissingType
+
+""" GuardianInvitations sort orders """
+enum GuardianInvitationsSortOrder {
+	""" Natural order """
+	NATURAL
+	""" Email ascending """
+	EMAIL_ASC
+	""" Email descending """
+	EMAIL_DESC
+}
+
+""" GuardianInvitations status """
+enum InvitationsStatus {
+	""" Pending order """
+	PENDING
+	""" Granted ascending """
+	GRANTED
+}
+
+type GuardianInvitation {
+	""" ID """
+	id: PositiveInt!
+    """ Student """
+    student: Student!
+    """ Classroom """
+    classroom: Classroom!
+    """ Email """
+    email: String!
+    """ Status """
+    status: String!
+    """ ExpiredAt """
+    expiredAt: DateTime
+    """ CompletedAt """
+    completedAt: DateTime
+}
+
+type GuardianInvitationsConnection {
+	""" Total nodes """
+	totalCount: Int @cost(complexity: 1)
+	""" Pagination info """
+	pageInfo: PageInfo!
+	""" Nodes collection """
+	nodes: [GuardianInvitation!]
+}
+
+input GuardianInvitationListFilters {
+    """ email """
+    email: String @constraint(minLength: 2, maxLength: 40),
+    """ studentId """
+    studentId: PositiveInt
+    """ classroomId """
+    classroomId: PositiveInt
+    """ status """
+    status: InvitationsStatus
+}
+
+type Query {
+	""" Get guardianInvitations listing """
+	listGuardianInvitations (
+		""" Pagination props """
+		pager: PagerOptions = {},
+		""" Sort order """
+		sortOrder: [GuardianInvitationsSortOrder] = [NAME_ASC],
+		""" Meta fields selection """
+		metaPaths: [String!]
+		""" Attributes filter """
+		filters: GuardianInvitationListFilters
+	): GuardianInvitationsConnection @cost(complexity: 50, multipliers: ["pager.limit", "sortOrder"])
+}

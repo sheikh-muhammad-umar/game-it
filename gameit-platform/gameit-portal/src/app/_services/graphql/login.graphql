@@ -1,0 +1,18 @@
+mutation LoginUser (
+      $input: LoginInput!
+    ) {
+      login(input: $input, cookie: true) {
+        me {
+          firstName
+          lastName
+          language
+          countryCode
+          role {
+            type
+          }
+        }
+        token {
+          token
+        }
+      }
+    }

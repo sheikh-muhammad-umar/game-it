@@ -1,0 +1,49 @@
+# noinspection GraphQLUnresolvedReference,GraphQLMissingType
+type MemberSchool {
+	""" ID """
+	id: PositiveInt!
+	""" School name """
+	name: String!
+	""" City name """
+	city: String!
+	""" Country """
+	country (
+		native: Boolean = false
+	): Country!
+}
+
+type SchoolsConnection {
+	""" Total nodes """
+	totalCount: Int @cost(complexity: 1)
+	""" Pagination info """
+	pageInfo: PageInfo!
+	""" Nodes collection """
+	nodes: [School!]
+}
+
+input MemberSchoolListFilters {
+	""" Contains name """
+	name: String @constraint(minLength: 2, maxLength: 40),
+	""" City name """
+	city: String @constraint(minLength: 2, maxLength: 40),
+	""" 2-digits country code (PK, TR) """
+	countryCode: String @constraint (
+		minLength: 2,
+		maxLength: 4,
+		pattern: "^[A-Z]+$"
+	)
+}
+
+type Query {
+	""" Get member schools listing """
+	listMemberSchools (
+		""" Pagination props """
+		pager: PagerOptions = {},
+		""" Sort order """
+		sortOrder: [SchoolsSortOrder] = [NAME_ASC],
+		""" Meta fields selection """
+		metaPaths: [String!]
+		""" Attributes filter """
+		filters: MemberSchoolListFilters
+	): SchoolsConnection @auth(role: [TEACHER]) @cost(complexity: 50, multipliers: ["pager.limit", "sortOrder"])
+}

@@ -1,0 +1,119 @@
+<div class="" style="text-align:center;padding-top:40px">
+    <a href="/" class="brand">
+        <img src="assets/images/gameit-logo-medium.png" alt="" width="200" height="17" class="brand-logo-dark">
+    </a>
+</div>
+
+<div *ngIf="!isSuccessful" class="col-md-12" style="margin: 0 auto 25px;max-width: 800px;">
+    <h5 style="text-align: center;padding: 10px 40px;" translate>_Pre-Register_Info_</h5>
+</div>
+
+<div *ngIf="!isSuccessful" class="col-md-12">
+    <div *ngIf="userRole" class="register card card-container">
+        <img *ngIf="isGuardian" id="profile-img" src="assets/images/guardian.png" class="profile-img-card" />
+        <img *ngIf="!isGuardian" id="profile-img" src="assets/images/teacher.png" class="profile-img-card" />
+        <h4 style="text-align: center;" translate>_Pre-Register_As_{{userRole}}</h4>
+        <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+            <div>
+                <div class="form-group" class="profile-first-name">
+                    <label for="firstname" translate>_First_Name_</label>
+                    <input type="text" class="form-control" name="firstname" [(ngModel)]="form.firstname" required minlength="3" maxlength="200" #firstname="ngModel" />
+                    <div class="alert-danger" *ngIf="firstname.errors && f.submitted">
+                        <div *ngIf="firstname.errors['required']" translate>_First_name_is_required_</div>
+                        <div *ngIf="firstname.errors['minlength']" translate>_First_name_at_least_</div>
+                        <div *ngIf="firstname.errors['maxlength']" translate>_First_name_at_most_</div>
+                    </div>
+                </div>
+                <div class="form-group" class="profile-last-name">
+                    <label for="lastname" translate>_Last_Name_</label>
+                    <input type="text" class="form-control" name="lastname" [(ngModel)]="form.lastname" required minlength="3" maxlength="200" #lastname="ngModel" />
+                    <div class="alert-danger" *ngIf="lastname.errors && f.submitted">
+                        <div *ngIf="lastname.errors['required']" translate>_Last_name_is_required_</div>
+                        <div *ngIf="lastname.errors['minlength']" translate>_Last_name_at_least_</div>
+                        <div *ngIf="lastname.errors['maxlength']" translate>_Last_name_at_most_</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group" style="clear: both;">
+                <label for="email" translate>_Email_</label>
+                <input type="email" class="form-control" name="email" [(ngModel)]="form.email" required email #email="ngModel" />
+                <div class="alert-danger" *ngIf="email.errors && f.submitted">
+                    <div *ngIf="email.errors['required']" translate>_Email_is_required_</div>
+                    <div *ngIf="email.errors['email']" translate>_Email_must_be_valid_</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="phone" translate>_Phone_optional_</label>
+                <input type="phone" class="form-control" name="phone" [(ngModel)]="form.phone" phone #phone="ngModel" />
+                <div class="alert-danger" *ngIf="phone.errors && f.submitted">
+                    <div *ngIf="phone.errors['phone']" translate>_Phone_must_be_valid_</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" translate>_button_send_</button>
+            </div>
+
+            <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed" translate>_Pre-Registration_failed_<br />{{ errorMessage }}
+            </div>
+            <div class="haGqRf">
+                <ul>
+                    <li><a (click)="setRole('')" style="cursor: pointer;font-weight: 500; font-size: 18px;"><span translate>_Not_a_{{userRole}}</span></a></li>
+                </ul>
+            </div>
+        </form>
+    </div>
+    <div *ngIf="!userRole" class="card-container" style="margin: auto; width: fit-content;">
+        <div class="card" style="float: left; margin: 20px;">
+            <img id=" profile-img " src="assets/images/guardian.png " class="profile-img-card " />
+
+            <h4 style="text-align: center;min-width: 250px;padding:20px 0px ;" translate>_Pre-Register_Guardian_</h4>
+
+            <button class="btn btn-primary btn-block" (click)="setRole('Guardian')" translate>_button_select_</button>
+
+        </div>
+        <div class="card" style="float: left;margin:20px">
+            <img id="profile-img " src="assets/images/teacher.png" class="profile-img-card " />
+
+            <h4 style="text-align: center;min-width: 250px;padding:20px 0px ;" translate>_Pre-Register_Teacher_</h4>
+
+            <button class="btn btn-primary btn-block" (click)="setRole( 'Teacher') " translate>_button_select_</button>
+
+        </div>
+    </div>
+
+</div>
+
+<div class="alert alert-success" style="text-align: center;" *ngIf="isSuccessful">
+    <section class="sc-eNQAEJ haVFxc" role="main">
+        <div class="sc-jKJlTe jPieqz">
+            <h4 translate>_Pre-Registration_succesful_</h4>
+        </div>
+        <div id="succes page">
+            <div class="sc-cHGsZl crTHGb"> <img style="width: 100px; margin:10px" id="email-img" src="assets/images/success.png" class="success-img" />
+            </div>
+            <div class="sc-TOsTZ fHxUUE">
+                <h5 translate>_Pre-Registration_success_message_</h5>
+            </div>
+
+        </div>
+
+    </section>
+</div>
+
+<div class="alert alert-failure" style="text-align: center;" *ngIf="isSignUpFailed">
+    <section class="sc-eNQAEJ haVFxc" role="main">
+        <div class="sc-jKJlTe jPieqz">
+            <h4>_Pre-Registration_failed_</h4>
+        </div>
+        <div id="succes page">
+            <div class="sc-cHGsZl crTHGb"> <img style="width: 100px; margin:10px" id="email-img" src="assets/images/failure.png" class="success-img" />
+            </div>
+            <div class="sc-TOsTZ fHxUUE">
+                <h5>_Pre-Registration_failed_try_again_</h5>
+            </div>
+
+        </div>
+
+    </section>
+</div>

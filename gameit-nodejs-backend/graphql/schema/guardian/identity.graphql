@@ -1,0 +1,53 @@
+# noinspection GraphQLUnresolvedReference,GraphQLMissingType
+
+""" signUp mutation input fields """
+input SignupInputs {
+	""" User role """
+	role: UserRole!
+	""" First name """
+	firstName: String! @constraint(minLength: 3, maxLength: 15)
+	""" Last name """
+	lastName: String! @constraint(minLength: 3, maxLength: 15)
+	""" Username """
+	username: String! @constraint(minLength: 6, maxLength: 40)
+	""" Email address """
+	email: EmailAddress!
+	""" Password """
+	password: String! @constraint(minLength: 8, maxLength: 40)
+	""" Country code """
+	country: String! @constraint(
+		minLength: 2,
+		maxLength: 4,
+		pattern: "^[A-Z]+$"
+	)
+}
+
+""" GuardianInvitation mutation input fields """
+input GuardianInvitationInputs {
+	""" Guardian email address """
+	email: String! @constraint(minLength: 6, maxLength: 255)
+	""" Student ID """
+	studentId: PositiveInt!
+}
+
+""" verifyAndActivateUserAccount mutation input fields """
+input VerifyAndAcceptInvitationInputs {
+	""" Username or email address """
+	username: String! @constraint(minLength: 6, maxLength: 255)
+	""" Invitation code """
+	code: String! @constraint(minLength: 6, maxLength: 6, pattern: "^[0-9]{6}$")
+}
+
+type Mutation {
+	""" Create a new guardian account """
+	signUp (
+		""" Input fields """
+		inputs: SignupInputs!
+	): Void @guest @cost(complexity: 500)
+
+	""" Send an invitation code """
+	guardianInvitation (
+		""" Input fields """
+		inputs: GuardianInvitationInputs!
+	): Void @auth(role: [TEACHER]) @cost(complexity: 300)
+}

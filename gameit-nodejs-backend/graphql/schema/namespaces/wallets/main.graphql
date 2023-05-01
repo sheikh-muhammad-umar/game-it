@@ -1,0 +1,16 @@
+type DateRange {
+    from: Date!
+    to: Date!
+}
+
+type WalletsQuery {
+    balance: PositiveInt!
+    transactionsHistory: DateRange!
+}
+
+#   balance() -> Int [e.g., no. of coins]
+#   transactionsHistory(dateRange? {from, to})
+
+type Query  {
+    wallets: WalletsQuery
+}

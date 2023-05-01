@@ -1,0 +1,51 @@
+{
+    "name": "gameitapp",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "start": "node ./bin/www",
+        "nodemon": "nodemon ./bin/www.js",
+        "nodemon-debug": "nodemon --inspect ./bin/www.js",
+        "test": "jest"
+    },
+    "dependencies": {
+        "@google-analytics/data": "^2.8.0",
+        "ajv": "^8.11.0",
+        "ajv-errors": "^3.0.0",
+        "ajv-formats": "^2.1.1",
+        "ajv-i18n": "^4.2.0",
+        "ajv-keywords": "^5.1.0",
+        "axios": "^0.25.0",
+        "bcryptjs": "^2.4.3",
+        "cookie-parser": "^1.4.6",
+        "cors": "^2.8.5",
+        "debug": "~2.6.9",
+        "dotenv": "^16.0.0",
+        "express": "^4.16.4",
+        "express-session": "^1.17.2",
+        "glob": "^7.2.0",
+        "http-errors": "~1.6.3",
+        "load-json-file": "^7.0.1",
+        "merge": "^2.1.1",
+        "moment": "^2.29.2",
+        "morgan": "~1.9.1",
+        "mysql2": "^2.3.3",
+        "nanoid": "^3.3.2",
+        "node-mailjet": "^3.3.5",
+        "nodemon": "^2.0.15",
+        "object-path": "^0.11.8",
+        "passport": "^0.5.2",
+        "passport-jwt": "^4.0.0",
+        "pug": "2.0.0-beta11",
+        "ramda": "^0.28.0",
+        "sequelize": "^6.18.0",
+        "sha1": "^1.1.1"
+    },
+    "devDependencies": {
+        "faker": "^6.6.6",
+        "jest": "^27.5.1",
+        "sequelize-auto": "^0.8.8",
+        "sequelize-cli": "^6.4.1",
+        "supertest": "^6.2.2"
+    }
+}

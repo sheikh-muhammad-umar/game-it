@@ -1,0 +1,12 @@
+type User {
+	id: PositiveInt!
+	firstName: String!
+	lastName: String!
+	email: String!
+	username: String!
+	role: UserAccountType!
+	language: String!
+	timezone: String!
+	created: DateTime!
+	countryCode: String!
+}

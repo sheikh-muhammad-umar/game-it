@@ -1,0 +1,259 @@
+<div class="row">
+  <div>
+    <h3 class="page-title text-truncate font-weight-medium mb-1" translate>
+      <span translate>_Hello</span> Admin!
+    </h3>
+    <h5 class="text-muted font-weight-normal mb-3 w-100" translate>
+      _Admin_Welcome_Detail
+    </h5>
+    <h5 class="text-muted font-weight-normal mb-3 w-100" translate>
+      Please choose a date range to display more spesific results.
+    </h5>
+  </div>
+</div>
+<div class="row">
+  <div class="mb-3">
+    <input
+      id="rangeSelection"
+      #rangeSelection
+      hidden
+      type="text"
+      (change)="rangeSelected(rangeSelection.value)"
+    />
+    <div class="col-12">
+      <div class="customize-input float-left">
+        <div
+          id="reportrange"
+          #reportrange
+          class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius"
+          style="cursor: pointer; width: 100%"
+        >
+          <i class="fa fa-calendar"></i>&nbsp;
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <h4 class="page-title text-truncate font-weight-medium mb-1" translate>
+    Registered Users
+  </h4>
+  <h5 class="text-muted font-weight-normal mb-2 w-100" translate>
+    Results for platform users already registered
+  </h5>
+</div>
+<div class="row">
+  <div class="col-sm-12 col-md-6 col-xl-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex d-lg-flex d-md-block align-items-center">
+          <div>
+            <h3 class="text-dark mb-1 font-weight-medium">
+              {{ totalGuardians }}
+            </h3>
+            <h6
+              class="text-muted font-weight-normal mb-0 w-100 text-truncate"
+              translate
+            >
+              _Student_Dashboard_TotalGuardians
+            </h6>
+          </div>
+          <div class="ml-auto mt-md-3 mt-lg-0">
+            <span class="opacity-7 text-muted"
+              ><i data-feather="users"></i
+            ></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-6 col-xl-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex d-lg-flex d-md-block align-items-center">
+          <div>
+            <h3 class="text-dark mb-1 w-100 text-truncate font-weight-medium">
+              {{ totalStudents }}
+            </h3>
+            <h6
+              class="text-muted font-weight-normal mb-0 w-100 text-truncate"
+              translate
+            >
+              _Student_Dashboard_TotalStudents
+            </h6>
+          </div>
+          <div class="ml-auto mt-md-3 mt-lg-0">
+            <span class="opacity-7 text-muted"
+              ><i data-feather="users"></i
+            ></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-6 col-xl-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex d-lg-flex d-md-block align-items-center">
+          <div>
+            <h3 class="text-dark mb-1 w-100 text-truncate font-weight-medium">
+              {{ totalGamesDownloaded }}
+            </h3>
+            <h6
+              class="text-muted font-weight-normal mb-0 w-100 text-truncate"
+              translate
+            >
+              _Student_Dashboard_TotalGamesDownloaded
+            </h6>
+          </div>
+          <div class="ml-auto mt-md-3 mt-lg-0">
+            <span class="opacity-7 text-muted"
+              ><i data-feather="download"></i
+            ></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-6 col-xl-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex d-lg-flex d-md-block align-items-center">
+          <div>
+            <h3 class="text-dark mb-1 font-weight-medium">{{ playTime }}</h3>
+            <h6
+              class="text-muted font-weight-normal mb-0 w-100 text-truncate"
+              translate
+            >
+              _Student_Dashboard_PlayTime
+            </h6>
+          </div>
+          <div class="ml-auto mt-md-3 mt-lg-0">
+            <span class="opacity-7 text-muted"
+              ><i data-feather="clock"></i
+            ></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div>
+  <h4 class="page-title text-truncate font-weight-medium mb-1" translate>
+    Visitors
+  </h4>
+  <h5 class="text-muted font-weight-normal mb-2 w-100" translate>
+    Results for website visitors
+  </h5>
+</div>
+<div class="row">
+  <div class="col-sm-12 col-md-6 col-xl-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex d-lg-flex d-md-block align-items-center">
+          <div>
+            <h3 *ngIf="totalUsers >= 0 else noUserData" class="text-dark mb-1 font-weight-medium">
+              {{ totalUsers }}
+            </h3>
+            <ng-template #noUserData>
+            <h3 class="text-dark mb-1 font-weight-medium" data-toggle="tooltip" data-placement="top" title="No data.">
+              !
+            </h3>
+          </ng-template>
+            <h6
+              class="text-muted font-weight-normal mb-0 w-100 text-truncate"
+              translate
+            >
+              _Student_Dashboard_TotalUsers
+            </h6>
+          </div>
+          <div class="ml-auto mt-md-3 mt-lg-0">
+            <span class="opacity-7 text-muted"
+              ><i data-feather="users"></i
+            ></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-12 col-md-6 col-xl-3">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex d-lg-flex d-md-block align-items-center">
+          <div>
+            <h3 *ngIf="totalNewUsers >= 0 else noData" class="text-dark mb-1 font-weight-medium">
+              {{ totalNewUsers }}
+            </h3>
+            <ng-template #noData>
+            <h3 class="text-dark mb-1 font-weight-medium" data-toggle="tooltip" data-placement="top" title="No data.">
+              !
+            </h3>
+          </ng-template>
+            <h6
+              class="text-muted font-weight-normal mb-0 w-100 text-truncate"
+              translate
+            >
+              _Student_Dashboard_TotalNewUsers
+            </h6>
+          </div>
+          <div class="ml-auto mt-md-3 mt-lg-0">
+            <span class="opacity-7 text-muted"
+              ><i data-feather="users"></i
+            ></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-sm-12 col-md-6 p-0">
+  <div class="card">
+    <div class="card-body">
+      <div class="align-items-center">
+        <div>
+          <h6
+            class="text-muted font-weight-normal mb-0 w-100 text-truncate"
+            translate
+          >
+            _Student_Dashboard_UsersByCountry &nbsp;&nbsp;&nbsp;&nbsp;
+            <span class="opacity-7 text-muted"
+              ><i data-feather="users"></i
+            ></span>
+          </h6>
+          <table class="table borderless">
+            <thead>
+              <tr>
+                <th scope="col" class="text-left">Country</th>
+                <th scope="col" class="text-right">Users</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let el of elements">
+                <tr>
+                  <td class="text-left">{{ el.Country }}</td>
+                  <td class="text-right">{{ el.Users }}</td>
+                </tr>
+                <tr style="padding: 0 !important;">
+                  <td colspan="2" style="padding: 0 !important;">
+                    <div class="progress" style="height: 5px;">
+                      <div
+                        class="progress-bar"
+                        role="progressbar"
+                        [style.width]="100*el.Users/46+'%'"
+                        aria-valuenow= el.Users.toString()
+                        aria-valuemin="0"
+                        aria-valuemax="46"
+                      ></div>
+                    </div>
+                  </td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

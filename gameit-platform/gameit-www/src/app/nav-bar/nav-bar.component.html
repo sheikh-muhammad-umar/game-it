@@ -1,0 +1,58 @@
+<header class="section page-header">
+    <!--RD Navbar-->
+    <div class="rd-navbar-wrap">
+        <nav class="rd-navbar rd-navbar-classic rd-navbar-original rd-navbar-static rd-navbar--is-stuck" data-layout="rd-navbar-fixed" data-sm-layout="rd-navbar-fixed" data-md-layout="rd-navbar-fixed" data-md-device-layout="rd-navbar-fixed" data-lg-layout="rd-navbar-static"
+            data-lg-device-layout="rd-navbar-static" data-xl-layout="rd-navbar-static" data-xl-device-layout="rd-navbar-static" data-lg-stick-up-offset="46px" data-xl-stick-up-offset="46px" data-xxl-stick-up-offset="46px" data-lg-stick-up="true" data-xl-stick-up="true"
+            data-xxl-stick-up="true">
+            <div class="rd-navbar-main-outer">
+                <div class="rd-navbar-main">
+                    <!--RD Navbar Panel-->
+                    <div class="rd-navbar-panel">
+                        <!--RD Navbar Toggle-->
+                        <button class="rd-navbar-toggle toggle-original" data-rd-navbar-toggle=".rd-navbar-nav-wrap"><span></span></button>
+                        <!--RD Navbar Brand-->
+                        <div class="rd-navbar-brand">
+                            <!--Brand-->
+                            <a class="brand" href="/"><img class="brand-logo-dark" src="assets/images/gameit-logo-large.png" alt="" width="100" height="17"><img class="brand-logo-light" src="assets/images/gameit-logo-large.png" alt="" width="100" height="17"></a>
+                        </div>
+                    </div>
+                    <div class="rd-navbar-main-element">
+                        <div class="rd-navbar-nav-wrap toggle-original-elements ">
+                            <ul class="rd-navbar-nav">
+                                <li *ngIf="isLoggedIn" class="rd-nav-item"><a class="rd-nav-link" (click)="gotoProfile()" href="javascript:void(0)">{{username}}</a>
+                                </li>
+                                <li *ngIf="!isLoggedIn" class="rd-nav-item"><a class="rd-nav-link" [routerLink]="['/login']" href="#" translate>_Login_</a>
+                                </li>
+                                <li class="rd-nav-item" style="cursor: pointer;"><a *ngIf="isDefaultLang('en')" class="arabic rd-nav-link" (click)="changeLangage('ar')">العربية</a><a *ngIf="isDefaultLang('ar')" class="english rd-nav-link" (click)="changeLangage('en')">English</a>
+                                </li>
+                            </ul>
+                            <ul class="rd-navbar-nav">
+                                <li class="rd-nav-item"><a class="rd-nav-link" [routerLink]="['/']" href="#" translate>_Home_</a>
+                                </li>
+                                <li class="rd-nav-item rd-navbar--has-dropdown rd-navbar-submenu"><a class="rd-nav-link" translate>_About_GameIT_drop_down_menu</a>
+                                    <ul class="rd-menu rd-navbar-dropdown">
+                                        <li class="rd-dropdown-item"><a class="rd-dropdown-link" [routerLink]="['/story']" href="#" translate>_Our_Story_About_drop_down_menu</a>
+                                        </li>
+                                        <li class="rd-dropdown-item"><a class="rd-dropdown-link" [routerLink]="['/solution']" href="#" translate>_What_We_Do_About_drop_down_menu</a>
+                                        </li>
+                                        <li class="rd-dropdown-item"><a class="rd-dropdown-link" [routerLink]="['/team']" href="#" translate>_Our_Team_About_drop_down_menu</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="rd-nav-item"><a class="rd-nav-link" [routerLink]="['/innovation']" href="#" translate>_Our_Innovation_</a>
+                                </li>
+                                <li class="rd-nav-item"><a class="rd-nav-link" [routerLink]="['/blog']" href="#" translate>_Our_Blog_</a>
+                                </li>
+                                <li class="rd-nav-item"><a class="rd-nav-link" [routerLink]="['/contact']" href="#" translate>_Contact_Us_</a>
+                                </li>
+
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+</header>

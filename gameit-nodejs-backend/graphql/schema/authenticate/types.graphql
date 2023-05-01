@@ -1,0 +1,10 @@
+# Authorization common types
+
+type AuthToken {
+	# Authorization access token
+	token: String
+	# Token expiry timestamp (e.g., 0000-00-00T00:00:00+00:00)
+	expiredAt: DateTime
+	# Token issued timestamp (e.g., 0000-00-00T00:00:00+00:00)
+	issuedAt: DateTime
+}

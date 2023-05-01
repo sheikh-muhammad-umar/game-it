@@ -1,0 +1,112 @@
+package gameIt.registration.dao;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+import gameIt.registration.models.User;
+
+
+@Repository
+public class UserDaoDB implements UserDao {
+
+	@Autowired
+	JdbcTemplate jdbc;
+
+	@Override
+	public User getUserById(int id) {
+		try {
+			final String GET_USER_BY_ID = "SELECT * FROM user WHERE userid = ?";
+			return jdbc.queryForObject(GET_USER_BY_ID, new UserMapper(), id);
+		} catch (DataAccessException ex) {
+			return null;
+		}
+	}
+
+	@Override
+	public List<User> getAllUsers() {
+		final String GET_ALL_USERS = "SELECT * FROM user";
+        return jdbc.query(GET_ALL_USERS, new UserMapper());
+	}
+
+	@Override
+	@Transactional
+	public User addUser(User user) {
+		final String INSERT_USER = "INSERT INTO user(username, first_name, last_name, password_hash) " +
+                "VALUES(?,?,?,?)";
+        jdbc.update(INSERT_USER,
+        		user.getUsername(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getPassword());
+        
+        int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
+        user.setId(newId);
+        return user;
+	}
+
+	@Override
+	public void updateUser(User user) {
+		final String UPDATE_USER = "UPDATE user SET username = ?, first_name = ?, last_name = ?, " +
+                "password_hash = ? WHERE userid = ?";
+        jdbc.update(UPDATE_USER,
+        		user.getUsername(),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getPassword(),
+                user.getId());
+	}
+
+	@Override
+	@Transactional
+	public void deleteUserById(int id) {
+		final String DELETE_STUDENT_GUARDIAN = "DELETE sg.* FROM guardiantostudent sg "
+                + "JOIN student s ON sg.studentID = s.StudentID WHERE s.StudentID = ?";
+        jdbc.update(DELETE_STUDENT_GUARDIAN, id);
+        
+        final String DELETE_GUARDIAN = "DELETE FROM guardian WHERE GuardianID = ?";
+        jdbc.update(DELETE_GUARDIAN, id);
+        
+        final String DELETE_COURSE_STUDENT = "DELETE sg.* FROM guardiantostudent sg "
+                + "JOIN guardian g ON sg.GuardianID = g.GuardianID WHERE g.GuardianID = ?";
+        jdbc.update(DELETE_COURSE_STUDENT, id);
+        
+        final String DELETE_STUDENT = "DELETE FROM student WHERE StudentID = ?";
+        jdbc.update(DELETE_STUDENT, id);
+        
+        final String DELETE_USER = "DELETE FROM user WHERE userid = ?";
+        jdbc.update(DELETE_USER, id);
+	}
+
+	public static final class UserMapper implements RowMapper<User> {
+
+		@Override
+		public User mapRow(ResultSet rs, int index) throws SQLException {
+			User user = new User();
+			user.setId(rs.getInt("userid"));
+			user.setUsername(rs.getString("username"));
+			user.setFirstName(rs.getString("first_name"));
+			user.setLastName(rs.getString("last_name"));
+			user.setPassword(rs.getString("password_hash"));
+
+			return user;
+		}
+	}
+
+	@Override
+	public User getUserByUserName(String username) {
+		try {
+			final String GET_USER_BY_USERNAME = "SELECT * FROM user WHERE username = ?";
+			return jdbc.queryForObject(GET_USER_BY_USERNAME, new UserMapper(), username);
+		} catch (DataAccessException ex) {
+			return null;
+		}
+	}
+}

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <title>Student Details</title>
+  </head>
+  <body>
+    <!-- Main Body of Page -->
+ <div class="container">
+           
+            <div class="row m-4 border border-dark">
+            
+                <div class="col-6 text-right"><strong>ID</strong></div>
+                <div class="col-6 text-left">
+                    <span th:text="${user.id}">display id</span>
+                </div>
+                
+                <div class="col-6 text-right"><strong>User Name</strong></div>
+                <div class="col-6 text-left">
+                    <span th:text="${user.username}">display username</span>
+                </div>
+     <!--           
+                <div class="col-6 text-right"><strong>Password</strong></div>
+                <div class="col-6 text-left">
+                    <span th:text="${user.password}">display password</span>
+                </div>
+       -->         
+                <div class="col-6 text-right"><strong>Name</strong></div>
+                <div class="col-6 text-left">
+                    <span th:text="${user.firstName + ' ' + 
+                         user.lastName}">display name</span>
+                </div>
+                
+                <div class="col-6 text-right"><strong>Date of Birth</strong></div>
+                <div class="col-6 text-left">
+                        <span th:text="${student.birthdate}">
+                            display birthdate</span><br/>
+                </div>
+                
+                <div class="col-6 text-right"><strong>School</strong></div>
+                <div class="col-6 text-left">
+                        <span th:text="${student.school}">
+                            display school</span><br/>
+                </div>
+                
+                <div class="col-6 text-right"><strong>Diagnoses</strong></div>
+                <div class="col-6 text-left">
+                        <span th:text="${student.diagnoses}">
+                            display diagnoses</span><br/>
+                </div>
+                
+                <div class="col-6 text-right"><strong>Country</strong></div>
+                <div class="col-6 text-left">
+                        <span th:text="${student.country}">
+                            display country</span><br/>
+                </div>
+                
+                <div class="col-6 text-right"><strong>City</strong></div>
+                <div class="col-6 text-left">
+                        <span th:text="${student.city}">
+                            display city</span><br/>
+                </div>
+                
+                
+                
+              <img th:src="@{${'user-photos/' + student.id + '/' + student.photo}}"/>  
+                              
+            </div>
+        </div>
+    <!-- End main body -->
+    
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>;

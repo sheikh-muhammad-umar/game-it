@@ -1,0 +1,69 @@
+# noinspection GraphQLUnresolvedReference,GraphQLMissingType
+""" Games sort orders """
+enum GamesSortOrder {
+	""" Natural order """
+	NATURAL
+	""" ID ascending """
+	ID_ASC
+	""" ID descending """
+	ID_DESC
+}
+
+type Game {
+	""" ID """
+	id: PositiveInt!
+	""" Title """
+	title: String!
+	""" Decription """
+	description: String!
+   	""" Skill ID """
+	skill_id: PositiveInt!
+   	""" Skill Title """
+	skill_title: String!
+	""" Skill Decription """
+	skill_description: String!
+	""" App Meta """
+	app: JSON
+	""" Levels Meta """
+	levels: JSON
+	""" Status """
+	status: String!
+	""" Student """
+	students: [Student]
+}
+
+input GameListFilters {
+	""" Contains title """
+	title: String @constraint(minLength: 2, maxLength: 40)
+	""" Student ID """
+	studentId: PositiveInt
+	""" User Games """
+	userGames: Boolean
+	""" Status """
+	status: String
+	""" Skill ID """
+	skillId: PositiveInt
+}
+
+type GamesConnection {
+	""" Total nodes """
+	totalCount: Int @cost(complexity: 1)
+	""" Pagination info """
+	pageInfo: PageInfo!
+	""" Nodes collection """
+	nodes: [Game!]
+}
+
+type Query {
+	""" Get Game listing """
+	listGames (
+		""" Pagination props """
+		pager: PagerOptions = {},
+		""" Sort order """
+		sortOrder: [GamesSortOrder] = [ID_ASC],
+		""" Meta fields selection """
+		metaPaths: [String!]
+		""" Attributes filter """
+		filters: GameListFilters
+	): GamesConnection @auth(role: [TEACHER, SCHOOL_ADMIN, GUARDIAN]) @cost(complexity: 50, multipliers: ["pager.limit", "sortOrder"])
+}

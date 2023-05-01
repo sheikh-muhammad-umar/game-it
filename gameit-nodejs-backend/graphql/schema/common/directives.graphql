@@ -1,0 +1,28 @@
+# Core directives
+
+directive @cost(
+	multipliers: [String],
+	useMultipliers: Boolean,
+	complexity: Int
+) on OBJECT | FIELD_DEFINITION
+
+# Check user permissions (will throw error for none-auth requests)
+directive @auth (
+	id: [PositiveInt!] = []
+	role: [UserRole!] = []
+	status: [UserStatus!] = []
+) on OBJECT | FIELD_DEFINITION | ARGUMENT_DEFINITION | INPUT_OBJECT
+
+# Check guest permissions (will throw error for auth requests)
+directive @guest
+on OBJECT | FIELD_DEFINITION | ARGUMENT_DEFINITION | INPUT_OBJECT
+
+directive @cacheControl(
+	maxAge: Int,
+	scope: CacheControlScope
+) on OBJECT | FIELD | FIELD_DEFINITION
+
+enum CacheControlScope {
+	PUBLIC
+	PRIVATE
+}

@@ -1,0 +1,134 @@
+package gameIt.registration.service;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+
+import gameIt.registration.dao.GuardianDao;
+import gameIt.registration.dao.StudentDao;
+import gameIt.registration.dao.UserDao;
+
+	@Configuration
+	@EnableWebSecurity
+	public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+		
+	   
+	    @Autowired
+	    private DataSource dataSource;
+	     
+	    @Bean
+	    public UserDetailsService userDetailsService() {
+	        return new CustomUserDetailsService();
+	    }
+	     
+	     
+	    @Bean
+	    public DaoAuthenticationProvider authenticationProvider() {
+	        DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
+	        authProvider.setUserDetailsService(userDetailsService());
+	        authProvider.setPasswordEncoder(new BCryptPasswordEncoder());
+	         
+	        return authProvider;
+	    }
+	 
+	    @Override
+	    protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+	        auth.authenticationProvider(authenticationProvider());
+	    }
+	 
+	    @Override
+	    protected void configure(HttpSecurity http) throws Exception {
+	        http.authorizeRequests()
+	        .antMatchers("/register").permitAll()
+            .antMatchers("/confirm").permitAll()
+            .antMatchers("/forgot_password").permitAll()
+    		.antMatchers("/reset_password").permitAll()
+//	            .antMatchers("/users").authenticated()
+//	            .anyRequest().permitAll()
+                .anyRequest().authenticated()
+	            .and()
+	            .formLogin()
+	            .loginPage("/login")
+	                .usernameParameter("username")
+//	                .defaultSuccessUrl("/users")
+	                .defaultSuccessUrl("/students")
+	                .permitAll()
+	            .and()
+	            .logout()
+//	            .logoutSuccessHandler(new LogoutSuccessHandler() {
+//	            	 
+//	                @Override
+//	                public void onLogoutSuccess(HttpServletRequest request,
+//	                            HttpServletResponse response, Authentication authentication)
+//	                        throws IOException, ServletException {
+//	                    CustomUserDetails userDetails = (CustomUserDetails) authentication.getPrincipal();
+//	                    String username = userDetails.getUsername();
+//	 
+//	                    System.out.println("The user " + username + " has logged out.");
+//	 
+//	                    response.sendRedirect(request.getContextPath());
+//	                }
+//	            })
+	            .permitAll()
+	            .and().rememberMe()
+                .tokenRepository(persistentTokenRepository())
+//                .tokenValiditySeconds(7 * 24 * 60 * 60) // expiration time: 7 days
+//                .key("AbcdefghiJklmNoPqRstUvXyz")  // cookies will survive if restarted
+                ;   
+	        
+	    }
+	    
+	    
+	    @Bean
+	    public PersistentTokenRepository persistentTokenRepository() {
+	        JdbcTokenRepositoryImpl tokenRepo = new JdbcTokenRepositoryImpl();
+	        tokenRepo.setDataSource(dataSource);
+	        return tokenRepo;
+	    }
+	    
+	    
+	    @Bean
+    	public PasswordEncoder passwordEncoder() {
+    		return new BCryptPasswordEncoder();
+    	}
+
+    	// Enable jdbc authentication
+    	@Autowired
+    	public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
+    		auth.jdbcAuthentication().dataSource(dataSource).passwordEncoder(passwordEncoder());
+    	}
+
+    	@Bean
+    	public JdbcUserDetailsManager jdbcUserDetailsManager() throws Exception {
+    		JdbcUserDetailsManager jdbcUserDetailsManager = new JdbcUserDetailsManager();
+    		jdbcUserDetailsManager.setDataSource(dataSource);
+    		return jdbcUserDetailsManager;
+    	}
+
+    	@Override
+    	public void configure(WebSecurity web) throws Exception {
+    		web.ignoring().antMatchers("/resources/**");
+    	}     
+	}

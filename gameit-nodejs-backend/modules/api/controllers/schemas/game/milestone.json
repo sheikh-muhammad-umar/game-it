@@ -1,0 +1,24 @@
+{
+	"body": {
+		"type": "object",
+		"properties": {
+			"sessionId": {
+				"type": "string",
+				"format": "uuid"
+			},
+			"date": {
+				"type": "string"
+			},
+			"stageNum": {
+				"type": "number"
+			},
+			"blueCrystalNum": {
+				"type": "number"
+			}
+		},
+		"required": [
+			"sessionId",
+			"date"
+		]
+	}
+}

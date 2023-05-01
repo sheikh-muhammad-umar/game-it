@@ -1,0 +1,234 @@
+{
+    "logoPosition": "right",
+    "pages": [{
+        "name": "page1",
+        "elements": [{
+                "type": "radiogroup",
+                "name": "Q1",
+                "title": {
+                    "default": "Does your child respond when you call his/her name (with a regular voice tone) ?",
+                    "ar": "يستجيب حين تتم مناداته باسمه \"بصوت في مستوى طبيعي من العلو\""
+                },
+                "isRequired": true,
+                "choices": [{
+                        "value": "Yes",
+                        "text": {
+                            "ar": "نعم"
+                        }
+                    },
+                    {
+                        "value": "No",
+                        "text": {
+                            "ar": "لا"
+                        }
+                    },
+                    {
+                        "value": "Sometimes",
+                        "text": {
+                            "ar": "احيانا"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "radiogroup",
+                "name": "Q2",
+                "title": {
+                    "default": "Is your child sensitive towards the sound effects (so he closes his/her ears even if hears normal sound’s volume)?",
+                    "ar": "لديه تحسس من المثيرات الصوتية فيغلق أذنيه مثلاً إذ سمع أصوات في النطاق الطبيعي"
+                },
+                "isRequired": true,
+                "choices": [{
+                        "value": "Yes",
+                        "text": {
+                            "ar": "نعم"
+                        }
+                    },
+                    {
+                        "value": "No",
+                        "text": {
+                            "ar": "لا"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "radiogroup",
+                "name": "Q3",
+                "title": {
+                    "default": "Able to listen and pay attention to what listening instructions and able to understand what is required of him/her.",
+                    "ar": "يستطيع أن يركز سمعه في التعليمات ويتفهم المطلوب"
+                },
+                "isRequired": true,
+                "choices": [{
+                        "value": "Yes",
+                        "text": {
+                            "ar": "نعم"
+                        }
+                    },
+                    {
+                        "value": "No",
+                        "text": {
+                            "ar": "لا"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "radiogroup",
+                "name": "Q4",
+                "title": {
+                    "default": "Able to attend to all visual and listening when it happened at the same time around him/her, but get distracted and doesn’t perform any of required tasks as a result.",
+                    "ar": "يلتفت لملثيرات السمعية والبصرية المتعددة عندما تحدث حوله في وقت واحد ولكنه يتشتت والنتجية لا ينجز المطلوب"
+                },
+                "isRequired": true,
+                "choices": [{
+                        "value": "Yes",
+                        "text": {
+                            "ar": "نعم"
+                        }
+                    },
+                    {
+                        "value": "No",
+                        "text": {
+                            "ar": "لا"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "radiogroup",
+                "name": "Q5",
+                "title": {
+                    "default": "Can not concentrate in the same task constantly for more than 10 minutes?",
+                    "ar": "لا يستطيع الانتباه المستمر في عمل معين لمدة 10 دقيقة تقريبا او اكثر"
+                },
+                "isRequired": true,
+                "choices": [{
+                        "value": "Yes",
+                        "text": {
+                            "ar": "نعم"
+                        }
+                    },
+                    {
+                        "value": "No",
+                        "text": {
+                            "ar": "لا"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "radiogroup",
+                "name": "Q6",
+                "title": {
+                    "default": "Able to finish his work from until the end without many interruptions?",
+                    "ar": "يستطيع ان يكمل عمل مطلوب منه الى النهاية دون انقطاعات متكررة"
+                },
+                "isRequired": true,
+                "choices": [{
+                        "value": "Yes",
+                        "text": {
+                            "ar": "نعم"
+                        }
+                    },
+                    {
+                        "value": "No",
+                        "text": {
+                            "ar": "لا"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "radiogroup",
+                "name": "Q7",
+                "title": {
+                    "default": "Pays attention to the specific details of the things and asks about them.",
+                    "ar": "يهتم بتفاصيل الاشياء ويسال كثيراً عندما يسمع عنها"
+                },
+                "isRequired": true,
+                "choices": [{
+                        "value": "Yes",
+                        "text": {
+                            "ar": "نعم"
+                        }
+                    },
+                    {
+                        "value": "No",
+                        "text": {
+                            "ar": "لا"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "radiogroup",
+                "name": "Q8",
+                "title": {
+                    "default": "Able to repeat may numbers, repeated in logical sequence when he/she hears it once (i.e: 2-4-6-8-10)",
+                    "ar": "يستطيع اعادة عدة ارقام متسلسلة مرتبطة في المعنى عندما يسمعها لمرة ( مثلا 2، 4،6،8،10)"
+                },
+                "isRequired": true,
+                "choices": [{
+                        "value": "Yes",
+                        "text": {
+                            "ar": "نعم"
+                        }
+                    },
+                    {
+                        "value": "No",
+                        "text": {
+                            "ar": "لا"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "radiogroup",
+                "name": "Q9",
+                "title": {
+                    "default": "Can follow 2 to 3 instructions correctly when he/she hears it once.",
+                    "ar": "يستطيع عمل او انجاز او امرين او ثلاث أوامر متتالية و متسلسة بنجاج يسمعها لمرة"
+                },
+                "isRequired": true,
+                "choices": [{
+                        "value": "Yes",
+                        "text": {
+                            "ar": "نعم"
+                        }
+                    },
+                    {
+                        "value": "No",
+                        "text": {
+                            "ar": "لا"
+                        }
+                    }
+                ]
+            },
+            {
+                "type": "radiogroup",
+                "name": "Q9",
+                "title": {
+                    "default": "He/She can rephrase sentences from (4-5 words) correctly when he/she hears its once.",
+                    "ar": "يستطيع اعادة جمل يسمعها من4-5 كلمات بتسلسل صحيح عندما يسمعها لمرةز"
+                },
+                "isRequired": true,
+                "choices": [{
+                        "value": "Yes",
+                        "text": {
+                            "ar": "نعم"
+                        }
+                    },
+                    {
+                        "value": "No",
+                        "text": {
+                            "ar": "لا"
+                        }
+                    }
+                ]
+            }
+        ]
+    }],
+    "widthMode": "responsive"
+}

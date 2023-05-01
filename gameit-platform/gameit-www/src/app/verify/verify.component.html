@@ -1,0 +1,28 @@
+<div class="" style="text-align:center;padding-top:40px">
+    <a href="/" class="brand">
+        <img src="assets/images/gameit-logo-medium.png" alt="" width="200" height="17" class="brand-logo-dark">
+    </a>
+</div>
+<div *ngIf="!isSubmitted">
+    <div style="margin-top: 40px;" class="container text-center">
+        <h3 translate>_Signup_Verify_Proceed</h3>
+        <a class="button-width-190 button-primary button-circle button-lg button offset-top-30" (click)="proceed()" href="javascript:void(0)" translate>_Signup_ActivateMyAccount</a>
+    </div>
+</div>
+<div *ngIf="isSubmitted">
+    <div *ngIf="isInProgress" style="margin-top: 40px;" class="container text-center">
+        <h3 translate>_PleaseWait</h3>
+    </div>
+
+    <div *ngIf="!isInProgress">
+        <div *ngIf="isVerified" style="margin-top: 40px;" class="container text-center">
+            <h3 translate>_Signup_Verify_Success</h3>
+            <h4><a href="/login" translate>_Signup_Verify_Login</a></h4>
+        </div>
+
+        <div *ngIf="!isVerified" style="margin-top: 40px;" class="container text-center">
+            <h3 translate>_Signup_Verify_Failure</h3>
+        </div>
+    </div>
+
+</div>

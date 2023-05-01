@@ -1,0 +1,66 @@
+# noinspection GraphQLUnresolvedReference,GraphQLMissingType
+
+""" SchoolJoinRequests sort orders """
+enum SchoolJoinRequestsSortOrder {
+	""" Natural order """
+	NATURAL
+}
+
+""" SchoolJoinRequests status """
+enum SchoolJoinRequestsStatus {
+	""" Granted """
+	GRANTED
+	""" Pending """
+	PENDING
+	""" Rejected """
+	REJECTED
+}
+
+type SchoolJoinRequest {
+    """ ID """
+    id: PositiveInt!,
+	""" Teacher """
+	teacher: User!,
+	""" School """
+	school: School!,
+    """ Status """
+	status: String!,
+    """ Expired at """
+	expiredAt: DateTime,
+    """ Issued at """
+	issuedAt: DateTime,
+    """ Completed at """
+	completedAt: String,
+}
+
+type SchoolJoinRequestsConnection {
+	""" Total nodes """
+	totalCount: Int @cost(complexity: 1)
+	""" Pagination info """
+	pageInfo: PageInfo!
+	""" Nodes collection """
+	nodes: [SchoolJoinRequest!]
+}
+
+input SchoolJoinRequestListFilters {
+	""" Teacher ID """
+	teacherId: PositiveInt,
+	""" School ID """
+	schoolId: PositiveInt,
+    """ Status """
+	status: SchoolJoinRequestsStatus,
+}
+
+type Query {
+	""" Get school join requests listing """
+	listSchoolJoinRequests (
+		""" Pagination props """
+		pager: PagerOptions = {},
+		""" Sort order """
+		sortOrder: [SchoolJoinRequestsSortOrder] = [NATURAL],
+		""" Meta fields selection """
+		metaPaths: [String!]
+		""" Attributes filter """
+		filters: SchoolJoinRequestListFilters
+	): SchoolJoinRequestsConnection @auth(role: [TEACHER, SCHOOL_ADMIN]) @cost(complexity: 110)
+}

@@ -1,0 +1,39 @@
+{
+	"body": {
+		"type": "object",
+		"properties": {
+			"sessionId": {
+				"type": "string",
+				"format": "uuid"
+			},
+			"date": {
+				"type": "string"
+			},
+			"stageNum": {
+				"type": "number"
+			},
+			"puzzleNum": {
+				"type": "number"
+			},
+			"mistakesNum": {
+				"type": "number"
+			},
+			"whiteCrystalNum": {
+				"type": "number"
+			},
+			"spentTime": {
+				"type": "number"
+			},
+			"completedActivityNum": {
+				"type": "number"
+			},
+			"difficultyLevel": {
+				"type": "string"
+			}
+		},
+		"required": [
+			"sessionId",
+			"date"
+		]
+	}
+}

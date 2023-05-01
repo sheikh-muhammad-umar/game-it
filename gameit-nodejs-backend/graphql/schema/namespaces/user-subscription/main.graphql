@@ -1,0 +1,20 @@
+type UserSubscription {
+	id: PositiveInt!
+}
+
+type UserSubscriptionQuery {
+	getDetails: JSON
+	remainingTime: DateTime
+}
+
+type UserSubscriptionActions {
+	buy: Void
+}
+
+type Query {
+	userSubscription: UserSubscriptionQuery
+}
+
+type Mutation {
+	userSubscription: UserSubscriptionActions
+}

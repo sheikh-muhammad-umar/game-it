@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="MavenProjectImportWizardPage">
+		<list key="rootDirectory">
+			<item value="C:\Users\mahyh\git\gameit-platform"/>
+			<item value="C:\Users\mahyh\Documents\workspace-spring-tool-suite-4-4.13.0.RELEASE\Registration"/>
+			<item value="C:\Users\mahyh\Downloads\springboot-master\springboot-master\springboot-jpa-file-upload-download"/>
+			<item value="C:\Users\mahyh\OneDrive - GameIT\Workspace-gameit\Registration"/>
+			<item value="C:\Users\mahyh\Downloads\spring-boot-modules-master-user-input"/>
+			<item value="C:\Users\mahyh\Downloads\spring-boot-modules-master-user-input\user-input"/>
+			<item value="C:\Users\mahyh\OneDrive - GameIT\Registration"/>
+			<item value="C:\Users\mahyh\Downloads\thymeleaf-bootstrap-datetime-picker"/>
+			<item value="C:\Users\mahyh\Downloads\thymeleaf-bootstrap-input-date"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+	<section name="org.eclipse.m2e.core.pom.overview">
+	</section>
+	<section name="org.eclipse.m2e.core.pom.dependencies">
+	</section>
+</section>

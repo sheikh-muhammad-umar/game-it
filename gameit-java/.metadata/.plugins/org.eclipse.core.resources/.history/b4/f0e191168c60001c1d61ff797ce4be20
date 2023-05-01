@@ -1,0 +1,126 @@
+package gameIt.registration.controller;
+
+import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import gameIt.registration.dao.GuardianDao;
+import gameIt.registration.dao.StudentDao;
+import gameIt.registration.dao.UserDao;
+import gameIt.registration.models.Guardian;
+import gameIt.registration.models.Student;
+import gameIt.registration.models.User;
+
+@Controller
+public class StudentController {
+
+	@Autowired
+	UserDao userDao;
+
+	@Autowired
+	GuardianDao guardianDao;
+
+	@Autowired
+	StudentDao studentDao;
+
+	@GetMapping("students")
+	public String displayStudents(Model model, Principal principal) {
+//        List<Student> students = studentDao.getAllStudents();
+//        List<User> users = userDao.getAllUsers();
+//        List<Guardian> guardians = guardianDao.getAllGuardians();
+//
+//        model.addAttribute("students", students);
+//        model.addAttribute("users", users);
+//        model.addAttribute("guardians", guardians);
+
+//		List<User> users = userDao.getAllUsersForStudent();
+//        model.addAttribute("users", users);
+
+		String name = principal.getName(); // get logged in username
+		int id = userDao.getUserByUserName(name).getId();
+		List<Student> students = studentDao.getStudentsForGuardian(id);
+		model.addAttribute("students", students);
+
+		return "students";
+	}
+
+//	@PostMapping("addStudent")
+//    public String addStudent(String firstName, String lastName, String password, String school, String diagnoses, String country, String city) {
+//		User user = new User();
+//		user.setFirstName(firstName);
+//		user.setLastName(lastName);
+//		user.setPassword(password);
+//		
+//        userDao.addUser(user);
+//        
+//
+//		
+//        Student student = new Student();
+//        student.setSchool(school);
+//        student.setDiagnoses(diagnoses);
+//        student.setCountry(country);
+//        student.setCity(city);
+//
+//        studentDao.addStudent(student);
+//        
+//        
+//        return "redirect:/students";
+//    }
+
+//	@PostMapping("addStudent")
+//    public String addStudent(Student student, HttpServletRequest request) {
+//        String userId = request.getParameter("userId");
+//        String[] guardiansIds = request.getParameterValues("guardianId");
+//        
+//        student.setUser(userDao.getUserById(Integer.parseInt(userId)));
+//        
+//        List<Guardian> guardians = new ArrayList<>();
+//        for(String guardianId : guardiansIds) {
+//        	guardians.add(guardianDao.getGuardianById(Integer.parseInt(guardianId)));
+//        }
+//        student.setGuardians(guardians);
+//       studentDao.addStudent(student);
+//        
+//        return "redirect:/students";
+//        
+//	}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////	
+	@PostMapping("students")
+	public String addUserAndStudent(String username, String firstname, String lastname, String password, String school,
+			String diagnoses, String country, String city, Principal principal) {
+
+		
+	    String name = principal.getName(); //get logged in username
+        int guardianId = userDao.getUserByUserName(name).getId();
+		
+		User user = new User();
+		user.setUsername(username);
+		user.setFirstName(firstname);
+		user.setLastName(lastname);
+		user.setPassword(password);
+
+		User addedUser = userDao.addUser(user);
+
+		Student student = new Student();
+
+		student.setUser(addedUser);
+
+		student.setSchool(school);
+		student.setDiagnoses(diagnoses);
+		student.setCountry(country);
+		student.setCity(city);
+
+		studentDao.addStudent(student, guardianId);
+
+		return "redirect:/students";
+	}
+
+}

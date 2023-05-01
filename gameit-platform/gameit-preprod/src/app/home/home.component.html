@@ -1,0 +1,123 @@
+<app-nav-bar></app-nav-bar>
+<!--Main section-->
+<section class="section section-sm main-section parallax-scene-js bg-video" style="transform: translate3d(0px, 0px, 0px); transform-style: preserve-3d; backface-visibility: hidden; position: relative">
+
+    <div class="container" style="direction: ltr;">
+        <div class="row justify-content-center">
+            <video ng-click="gotoRegister()" style="cursor:pointer" class="background-video" id="video1" autoplay loop muted defaultmuted playsinline poster="assets/videos/mvp-launch.png" oncanplay="this.play()" onloadedmetadata="this.muted = true">
+                <source src="assets/videos/mvp_stage1_10s.mp4" type="video/mp4"> 
+                Your browser does not support HTML5 video.
+                </video>
+        </div>
+        <!-- English-->
+        <div *ngIf="lang!=='ar'" class="row justify-content-center">
+            <div class="col-xl-8 col-12">
+                <div class="main-decorated-box text-center text-xl-left">
+                    <h1 class="text-white text-xl-center wow slideInRight" data-wow-delay=".3s" style="visibility: visible; animation-delay: 0.3s; animation-name: slideInRight;"><span class="align-top offset-top-30 d-inline-block font-weight-light prefix-text">launching on</span><span class="big d-block d-xl-flex font-weight-bold">26<sup style="font-size: 60%;">th</sup>&nbsp;March</span></h1>
+                    <div class="decorated-subtitle text-italic text-white wow slideInLeft" style="visibility: visible; animation-name: slideInLeft;">Please Click to Register to Be The First to Enjoy Our Free Game as a Gift From GameIT</div>
+                </div>
+            </div>
+            <div class="col-12 text-center" data-wow-delay=".2s">
+                <a class="button-width-190 button-primary button-circle button-lg button offset-top-30" style="opacity:90%" [routerLink]="['/pre-register']" href="#" translate>Register</a><br>
+            </div>
+            <div class="col-12 text-center" data-wow-delay=".2s">
+                <a class="button-way-point d-inline-block text-center d-inline-flex flex-column justify-content-center offset-top-75" href="#" data-custom-scroll-to="about"><span class="fa-chevron-down"></span></a>
+            </div>
+        </div>
+
+        <!-- Arabic  -->
+        <div *ngIf="lang==='ar'" class="row justify-content-center" style="direction: rtl;">
+            <div class="col-xl-8 col-12">
+                <div class="main-decorated-box text-center text-xl-left">
+                    <h1 class="text-white text-xl-center wow slideInRight" data-wow-delay=".3s" style="visibility: visible; animation-delay: 0.3s; animation-name: slideInRight;"><span class="align-top offset-top-30 d-inline-block font-weight-light prefix-text">ترقبو منصة جيمت قريبا</span><span class=" d-block d-xl-flex font-weight-bold">٢٣ شعبان <span class="font-weight-light prefix-text">الموافق</span> ٢٦
+                        مارس
+                        </span>
+                    </h1>
+                    <div class="decorated-subtitle text-italic text-white wow slideInLeft" style="text-align:center; visibility: visible; animation-name: slideInLeft;">اضغط هنا للتسجل وتكون من الاوائل للحصول على العابنا هدية لأطفالكم من جيمت</div>
+                </div>
+            </div>
+            <div class="col-12 text-center" data-wow-delay=".2s">
+                <a class="button-width-190 button-primary button-circle button-lg button offset-top-30" style="opacity:90%" [routerLink]="['/pre-register']" href="#" translate>سجل</a><br>
+            </div>
+            <div class="col-12 text-center" data-wow-delay=".2s">
+                <a class="button-way-point d-inline-block text-center d-inline-flex flex-column justify-content-center offset-top-75" href="#" data-custom-scroll-to="about"><span class="fa-chevron-down"></span></a>
+            </div>
+        </div>
+    </div>
+
+</section>
+<section class="section section-sm section-banner bg-white" id="about">
+    <div class="container" style=" max-width: 100%; padding: 0;">
+        <video id="video1" autoplay="autoplay" loop="true" muted defaultmuted playsinline oncanplay="this.play()" style="width: 100%;" onloadedmetadata="this.muted = true">
+            <source  *ngIf="lang!=='ar'" src="assets/videos/leap2022-winner-en.mp4" type="video/mp4"> 
+            <source  *ngIf="lang==='ar'" src="assets/videos/leap2022-winner-ar.mp4" type="video/mp4"> 
+            Your browser does not support HTML5 video.
+        </video>
+    </div>
+</section>
+<!--About-->
+<section class="section section-sm position-relative bg-white" id="about">
+    <div class="container">
+        <div class="row row-30">
+            <div class="col-lg-6">
+                <div class="block-decorate-img wow fadeInLeft" data-wow-delay=".2s"><img class="about" src="assets/images/about-570x703.png" alt="" width="570" height="351" />
+                </div>
+            </div>
+            <div class="col-lg-6 col-12">
+                <div class="block-sm offset-top-45">
+                    <h3 class="wow fadeInLeft text-capitalize devider-bottom" data-wow-delay=".3s" [innerHTML]="'_our_story_title_'|translate"></h3>
+                    <p class="offset-xl-40 wow fadeInUp" data-wow-delay=".4s" translate>_our_story_short_</p>
+                    <a class="button-width-190 button-primary button-circle button-lg button offset-top-30" [routerLink]="['/story']" href="#" translate>read more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Owl Carousel-->
+<section class="section section-md bg-gray-lighten">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-10">
+                <h3 class="wow fadeInLeft text-capitalize text-center" data-wow-delay=".3s" [innerHTML]="'_Famous_People_Had_Learning_Challenges'|translate"></h3>
+                <div class="owl-carousel review-carousel" data-rtl="true" data-items="1" data-sm-items="1" data-md-items="1" data-lg-items="1" data-xl-items="1" data-xxl-items="1" data-dots="true" data-nav="false" data-stage-padding="0" data-loop="true" data-margin="0"
+                    data-mouse-drag="true" data-autoplay="false">
+                    <div class="item">
+                        <div class="item-preview wow fadeInDown" data-wow-delay=".2s"><img src="assets/images/mohammed-ali.jpg" alt="" width="216" height="108" />
+                        </div>
+                        <div class="item-description wow fadeInUp" data-wow-delay=".3s">
+                            <p translate class="owl-quote">_Mohammed_Ali_Quote</p>
+                            <div class="item-subsection"><span class="item-subsection-title devider-left" translate>_Mohammed_Ali</span></div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="item-preview wow fadeInDown" data-wow-delay=".2s"><img src="assets/images/albert-einstein.jpg" alt="" width="216" height="108" />
+                        </div>
+                        <div class="item-description wow fadeInUp" data-wow-delay=".3s">
+                            <p translate class="owl-quote">Albert_Einstein_Quote</p>
+                            <div class="item-subsection"><span class="item-subsection-title devider-left" translate>_Albert_Einstein</span></div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="item-preview wow fadeInDown" data-wow-delay=".2s"><img src="assets/images/tom-cruise.jpg" alt="" width="216" height="108" />
+                        </div>
+                        <div class="item-description wow fadeInUp" data-wow-delay=".3s">
+                            <p translate class="owl-quote">_Tom_Cruise_Quote</p>
+                            <div class="item-subsection"><span class="item-subsection-title devider-left" translate>_Tom_Cruise</span></div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="item-preview wow fadeInDown" data-wow-delay=".2s"><img src="assets/images/thomas-edison.jpg" alt="" width="216" height="108" />
+                        </div>
+                        <div class="item-description wow fadeInUp" data-wow-delay=".3s">
+                            <p translate class="owl-quote">_Thomas_Edison_Quote</p>
+                            <div class="item-subsection"><span class="item-subsection-title devider-left" translate>_Thomas_Edison</span></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<app-footer></app-footer>

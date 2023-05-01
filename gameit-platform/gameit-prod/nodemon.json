@@ -1,0 +1,15 @@
+{
+	"watch": [
+		"./bin/*",
+		"./controllers/**/*",
+		"./sequelize/**/*",
+		"./helpers/**/*",
+		"./locales/src/*",
+		"./mail/*",
+		"./modules/**/*",
+		"./plugins/**/*",
+		"./sequelize/**/*",
+		"./utils/**/*"
+	],
+	"ext": "js,json,graphql,graphqls"
+}

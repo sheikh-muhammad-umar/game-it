@@ -1,0 +1,22 @@
+input DateRangeFilter {
+	from: Date!
+	to: Date!
+}
+
+input PurchasesFilters {
+	dateRange: DateRangeFilter
+}
+
+type PurchasesQuery {
+	userSubscriptions ( filters: PurchasesFilters ): [UserSubscription]
+	games( filters: PurchasesFilters ): [Game]
+}
+
+#	subscriptions(filters?: {dateRange? {from, to}}): [Subscription]
+#	games(filters?: {dateRange? {from, to}}): [Game]
+#	prepaid(filters?: {dateRange? {from, to}}): Int -> wallet -> balance()
+#}
+
+type Query  {
+	purchases: PurchasesQuery
+}

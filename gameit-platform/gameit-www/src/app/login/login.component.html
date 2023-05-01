@@ -1,0 +1,57 @@
+<div class="" style="text-align:center;padding-top:40px">
+    <a href="/" class="brand">
+        <img src="assets/images/gameit-logo-medium.png" alt="" width="200" height="17" class="brand-logo-dark">
+    </a>
+</div>
+<div class="col-md-12">
+    <div class="card card-container" style="text-align: initial;">
+        <img *ngIf="role=='student'" id="profile-img" src="assets/images/guardian.png" class="profile-img-card" />
+        <img *ngIf="role!='student'" id="profile-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="profile-img-card" />
+
+        <h4 *ngIf="role=='student'" style="text-align: center;" translate>_Login_AsChild</h4>
+        <h4 *ngIf="role!='student'" style="text-align: center;" translate>_Login_AsGuardian</h4>
+        <form *ngIf="!isLoggedIn" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+            <div class="form-group">
+                <label *ngIf="role=='student'" for="username" translate>_Login_ChildUsername</label>
+                <label *ngIf="role!='student'" for="username" translate>_Login_Username</label>
+
+
+                <input type="text" class="form-control" name="username" [(ngModel)]="form.username" required #username="ngModel" />
+                <div class="alert alert-danger" role="alert" *ngIf="username.errors && f.submitted" translate>
+                    _Login_Username_Required
+                </div>
+            </div>
+            <div class="form-group">
+                <label *ngIf="role=='student'" for="password" translate>_Login_ChildPassword</label>
+                <label *ngIf="role!='student'" for="password" translate>_Login_Password</label>
+
+                <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required minlength="1" #password="ngModel" />
+                <div class="alert alert-danger" role="alert" *ngIf="password.errors && f.submitted">
+                    <div *ngIf="password.errors['required']" translate>_Login_Password_Required</div>
+
+                </div>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary btn-block" translate>
+            _Login_Login_Button
+        </button>
+            </div>
+            <div class="form-group">
+                <div class="alert alert-danger" role="alert" *ngIf="f.submitted && isLoginFailed" translate>
+                    _Login_Failed {{ errorMessage }}
+                </div>
+            </div>
+
+            <div class="haGqRf">
+                <ul>
+                    <li><a id="resetPassword" [routerLink]="['/reset-password']"><span translate>_Login_Cannot_Login</span></a></li>
+                    <p class="bmtZSn">•</p>
+                    <li><a id="signup" class="primary-action" [routerLink]="['/register']"><span translate>_Login_Signup</span></a></li>
+                </ul>
+            </div>
+        </form>
+
+
+
+    </div>
+</div>

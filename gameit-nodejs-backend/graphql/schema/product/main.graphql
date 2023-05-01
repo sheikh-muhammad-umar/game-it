@@ -1,0 +1,17 @@
+type ProductType {
+	name: String!
+	type: ProductType
+}
+
+enum ProductType {
+	GAME
+	SUBSCRIPTION
+	PREPAID
+}
+
+type Product {
+	id: PositiveInt!
+	name: String!
+	type: ProductType!
+	coins: NonNegativeInt!
+}

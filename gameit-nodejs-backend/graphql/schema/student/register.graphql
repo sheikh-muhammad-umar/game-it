@@ -1,0 +1,20 @@
+#noinspection GraphQLUnresolvedReference,GraphQLMissingType
+
+input RegisterStudentInputs {
+	""" Username """
+	username: String! @constraint(minLength: 6, maxLength: 40)
+	""" Password """
+	password: String!
+	""" Fullname """
+	fullname: String @constraint(minLength: 3, maxLength: 40)
+	""" Email """
+	email: EmailAddress
+}
+
+type Mutation {
+	""" Register student """
+	registerStudent (
+		""" Input fields """
+		inputs: RegisterStudentInputs!
+	): Student @cost(complexity: 300)
+}

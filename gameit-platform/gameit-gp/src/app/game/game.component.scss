@@ -1,0 +1,31 @@
+.game-banner {
+    padding: 0;
+}
+
+@media (min-width: 768px) {
+    .card-horizontal {
+        display: flex;
+        flex: 1 1 auto;
+    }
+    .card-horizontal .img-square-wrapper img {
+        max-width: 600px;
+    }
+}
+
+@media (min-width: 992px) {
+    .card-horizontal .img-square-wrapper img {
+        max-width: 500px;
+    }
+}
+
+@media (min-width: 1300px) {
+    .card-horizontal .img-square-wrapper img {
+        max-width: 350px;
+    }
+}
+
+@media (min-width: 1500px) {
+    .card-horizontal .img-square-wrapper img {
+        max-width: 260px;
+    }
+}

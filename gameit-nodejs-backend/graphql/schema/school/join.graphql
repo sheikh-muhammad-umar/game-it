@@ -1,0 +1,42 @@
+""" Join school permission types """
+enum JoinSchoolPermission {
+	GRANTED
+	DENIED
+}
+
+enum SchoolRequestStatus {
+	GRANTED
+	PENDING
+	EXPIRED
+}
+
+type SchoolRequest {
+	id: PositiveInt!
+	school: School!
+	issuedAt: DateTime!
+	expiredAt: DateTime
+	completedAt: DateTime
+	status: SchoolRequestStatus!
+}
+
+type Mutation {
+	""" Grant or denied join school request """
+	joinSchoolRequest (
+		""" Permission type """
+		permission: JoinSchoolPermission!
+		""" Request ID """
+		requestId: String!
+	): Void @auth(role: [TEACHER, SCHOOL_ADMIN]) @cost(complexity: 800)
+
+	""" Re-send expired join school permission request """
+	resendJoinSchoolRequest(
+		""" Request ID """
+		requestId: String!
+	): Void @auth(role: [TEACHER]) @cost(complexity: 500)
+
+	""" Discard pending or expired school join request """
+	discardSchoolRequest (
+		""" Request ID """
+		requestId: String!
+	): Boolean @auth(role: [TEACHER]) @cost(complexity: 300)
+}

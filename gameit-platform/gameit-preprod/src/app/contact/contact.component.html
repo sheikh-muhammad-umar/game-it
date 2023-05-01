@@ -1,0 +1,52 @@
+<app-nav-bar></app-nav-bar>
+
+<section class="section section-intro context-dark" style="background-color:#4aaf63">
+    <div class="intro-bg" style="background: url(assets/images/intro-bg-1.png) no-repeat;background-size:cover;background-position: top center;"></div>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-8 text-center">
+                <h1 class="font-weight-bold wow fadeInLeft" style="visibility: visible; animation-name: fadeInLeft;"></h1>
+                <p class="intro-description wow fadeInRight" style="visibility: visible; animation-name: fadeInRight;"></p>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="section section-md">
+
+    <div class="container">
+        <div class="contactus-img"><img src=" assets/images/contactus.png " alt=" " /></div>
+
+        <!--RD Mailform-->
+        <div class="row justify-content-center" style="min-width: 500px;">
+            <div class="col-xl-6 col-md-8 col-12">
+                <p *ngIf="isSuccessful" translate>_Contact_Us_Success_</p>
+                <p *ngIf="isFailed" translate>_Contact_Us_Failure_</p>
+
+                <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit();" #f="ngForm" class="rd-mailform text-left" data-form-output="form-output-global" data-form-type="contact" method="post" action="" novalidate="novalidate">
+                    <div class="form-wrap">
+                        <label class="form-label rd-input-label" for="contact-name" [innerHTML]="'_Contact_Us_Page_Name'|translate"></label>
+                        <input class="form-input form-control-has-validation form-control-last-child" id="contact-name" type="text" name="name" [(ngModel)]="form.name" required minlength="3" maxlength="200" #name="ngModel" data-constraints="@Required">
+                        <span class="form-validation"></span>
+                    </div>
+                    <div class="form-wrap">
+                        <label class="form-label rd-input-label" for="contact-email" [innerHTML]="'_Contact_Us_Page_Email'|translate"></label>
+                        <input class="form-input form-control-has-validation form-control-last-child" id="contact-email" type="email" name="email" [(ngModel)]="form.email" required email #email="ngModel" data-constraints="@Required @Email"><span class="form-validation"
+                            translate=></span>
+                    </div>
+                    <div class="form-wrap">
+                        <label class="form-label rd-input-label" for="contact-phone" [innerHTML]="'_Contact_Us_Page_Phone'|translate"></label>
+                        <input class="form-input form-control-has-validation form-control-last-child" id="contact-phone" type="text" name="phone" [(ngModel)]="form.phone" phone #phone="ngModel" data-constraints="@PhoneNumber"><span class="form-validation"></span>
+                    </div>
+                    <div class="form-wrap">
+                        <label class="form-label label-textarea rd-input-label" for="contact-message" [innerHTML]="'_Contact_Us_Page_Message'|translate"></label>
+                        <textarea class="form-input form-control-has-validation form-control-last-child" id="contact-message" name="message" [(ngModel)]="form.message" required message #message="ngModel" data-constraints="@Required"></textarea><span class="form-validation"></span>
+                    </div>
+                    <div class="form-button group-sm text-center text-lg-left">
+                        <button class="contact button button-primary" translate>_Contact_Us_Page_SendButton</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<app-footer></app-footer>

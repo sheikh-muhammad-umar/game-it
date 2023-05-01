@@ -1,0 +1,155 @@
+package gameIt.registration.dao;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
+
+import gameIt.registration.dao.GuardianDaoDB.GuardianMapper;
+import gameIt.registration.dao.UserDaoDB.UserMapper;
+import gameIt.registration.models.Guardian;
+import gameIt.registration.models.Student;
+import gameIt.registration.models.User;
+
+@Repository
+public class StudentDaoDB implements StudentDao {
+
+	@Autowired
+	JdbcTemplate jdbc;
+
+	@Override
+	public Student getStudentById(int id) {
+		try {
+			final String SELECT_COURSE_BY_ID = "SELECT * FROM student WHERE StudentID = ?";
+			Student student = jdbc.queryForObject(SELECT_COURSE_BY_ID, new StudentMapper(), id);
+			student.setUser(getUserForStudent(id));
+			student.setGuardians(getGuardiansForStudent(id));
+			return student;
+		} catch (DataAccessException ex) {
+			return null;
+		}
+	}
+
+	private User getUserForStudent(int id) {
+		final String SELECT_USER_FOR_STUDENT = "SELECT u.* FROM user u "
+				+ "JOIN student S ON S.StudentID = u.userid WHERE S.StudentID = ?";
+		return jdbc.queryForObject(SELECT_USER_FOR_STUDENT, new UserMapper(), id);
+	}
+
+	private List<Guardian> getGuardiansForStudent(int id) {
+		final String SELECT_GUARDIANS_FOR_STUDENT = "SELECT g.* FROM guardian g "
+				+ "JOIN guardiantostudent sg ON sg.StudentID = s.StudentID WHERE sg.StudentID = ?";
+		return jdbc.query(SELECT_GUARDIANS_FOR_STUDENT, new GuardianMapper(), id);
+	}
+
+	@Override
+	public List<Student> getStudentsForGuardian(int id) {
+		try {
+			final String SELECT_STUDENTS_FOR_GUARDIAN = "SELECT s.* FROM student s "
+					+ "JOIN guardiantostudent sg ON sg.GuardianID = g.GuardianID WHERE sg.GuardianID = ?";
+			return jdbc.query(SELECT_STUDENTS_FOR_GUARDIAN, new StudentMapper(), id);
+		} catch (DataAccessException ex) {
+			return null;
+		}
+	}
+
+	@Override
+	public List<Student> getAllStudents() {
+		final String SELECT_ALL_STUDENTS = "SELECT * FROM student";
+		List<Student> students = jdbc.query(SELECT_ALL_STUDENTS, new StudentMapper());
+		associateUserAndGuardians(students);
+		return students;
+	}
+
+	private void associateUserAndGuardians(List<Student> students) {
+		for (Student student : students) {
+			student.setUser(getUserForStudent(student.getId()));
+			student.setGuardians(getGuardiansForStudent(student.getId()));
+		}
+	}
+
+	@Override
+	@Transactional
+	public Student addStudent(Student student, int id) {
+		final String INSERT_STUDENT = "INSERT INTO student(NameOfSchool, Diagnoses, CountryLiving, CityName, StudentID) "
+				+ "VALUES(?,?,?,?,?)";
+		jdbc.update(INSERT_STUDENT, student.getSchool(), student.getDiagnoses(), student.getCountry(),
+				student.getCity(), student.getUser().getId());
+
+//		int newId = jdbc.queryForObject("SELECT LAST_INSERT_ID()", Integer.class);
+//		student.setId(newId);
+		insertStudentGuardian(student, id);
+		return student;
+	}
+
+	private void insertStudentGuardian(Student student, int id) {
+		final String INSERT_STUDENT_GUARDIAN = "INSERT INTO "
+				+ "guardiantostudent(StudentID, GuardianID) VALUES(?,?)";
+//		for (Guardian guardian : student.getGuardians()) {
+//			jdbc.update(INSERT_STUDENT_GUARDIAN, student.getId(), guardian.getId());
+//		}
+		jdbc.update(INSERT_STUDENT_GUARDIAN, student.getId(), id);
+	}
+
+	@Override
+	@Transactional
+	public void updateStudent(Student student) {
+		final String UPDATE_STUDENT = "UPDATE student SET NameOfSchool = ?, Diagnoses = ?, CountryLiving = ?, CityName = ?"
+				+ "StudentID = ? WHERE id = ?";
+		jdbc.update(UPDATE_STUDENT, student.getSchool(), student.getDiagnoses(), student.getCountry(),
+				student.getCity(), student.getUser().getId(), student.getId());
+
+		final String DELETE_STUDENT_GUARDIAN = "DELETE FROM guardiantostudent WHERE StudentID = ?";
+		jdbc.update(DELETE_STUDENT_GUARDIAN, student.getId());
+		insertStudentGuardian(student);
+	}
+
+	@Override
+	@Transactional
+	public void deleteStudentById(int id) {
+		final String DELETE_STUDENT_GUARDIAN = "DELETE FROM guardiantostudent WHERE StudentID = ?";
+		jdbc.update(DELETE_STUDENT_GUARDIAN, id);
+
+		final String DELETE_STUDENT = "DELETE FROM student WHERE StudentID = ?";
+		jdbc.update(DELETE_STUDENT, id);
+	}
+
+	@Override
+	public List<Student> getStudentsForUser(User user) {
+		final String SELECT_STUDENTS_FOR_USER = "SELECT * FROM student WHERE StudentID = ?";
+		List<Student> students = jdbc.query(SELECT_STUDENTS_FOR_USER, new StudentMapper(), user.getId());
+		associateUserAndGuardians(students);
+		return students;
+	}
+
+	@Override
+	public List<Student> getStudentsForGuardian(Guardian guardian) {
+		final String SELECT_STUDENTS_FOR_GUARDIAN = "SELECT s.* FROM student s JOIN "
+				+ "guardiantostudent sg ON sg.StudentID = s.StudentID WHERE sg.GuardianID = ?";
+		List<Student> students = jdbc.query(SELECT_STUDENTS_FOR_GUARDIAN, new StudentMapper(), guardian.getId());
+		associateUserAndGuardians(students);
+		return students;
+	}
+
+	public static final class StudentMapper implements RowMapper<Student> {
+
+		@Override
+		public Student mapRow(ResultSet rs, int index) throws SQLException {
+			Student student = new Student();
+			student.setId(rs.getInt("StudentID"));
+			student.setSchool(rs.getString("NameOfSchool"));
+			student.setDiagnoses(rs.getString("Diagnoses"));
+			student.setCountry(rs.getString("CountryLiving"));
+			student.setCity(rs.getString("CityName"));
+
+			return student;
+		}
+	}
+
+}

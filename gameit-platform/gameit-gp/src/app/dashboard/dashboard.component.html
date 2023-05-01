@@ -1,0 +1,337 @@
+<div *ngIf="isEnabled">
+    <div class="row text-center" style="justify-content: center;">
+        <div>
+            <h3 class="page-title text-truncate font-weight-medium mb-1">{{form.firstName}}'s Dashboard</h3>
+            <h5 class="text-muted font-weight-normal mb-0 w-100 ">Here you can view your {{form.firstName}}'s progress and achievements.</h5>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div>
+            <h3 class="mt-4" translate></h3>
+            <h5 class="ml-4 mb-4 text-muted font-weight-normal mb-0 w-100 ">Please choose a date range and the game to display more spesific results.</h5>
+        </div>
+    </div>
+
+    <div _ngIf="selectedGameId">
+        <input id="rangeSelection" #rangeSelection hidden type="text" (change)="rangeSelected(rangeSelection.value)">
+        <div class="row" style="margin-bottom: 30px">
+            <div class="col-4">
+                <div class="customize-input float-left">
+                    <div id="reportrange" #reportrange class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius" style="cursor: pointer; width: 100%">
+                        <i class="fa fa-calendar"></i>&nbsp;
+                        <span></span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 align-self-center">
+                <div class="customize-input float-left">
+                    <select name="selGame" [ngModel]="selectedGameId" (ngModelChange)="updateGameId($event)" class="custom-select custom-select-set form-control bg-white border-0 custom-shadow custom-radius">
+                        <option *ngFor="let game of mvpGameList" [value]="game.id">{{game.title}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-4 align-self-center">
+                <div class="customize-input float-right">
+                    <button class="btn btn-primary pt-2 button-circle" style="border-radius: 25px;" (click)="loginAsChild(form.username)">Login to child account</button>
+                </div>
+            </div>
+        </div>
+        <app-game [selectedGameId]="selectedGameId"></app-game>
+
+        <!-- *************************************************************** -->
+        <!-- Start First Cards -->
+        <!-- *************************************************************** -->
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-xl-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex d-lg-flex d-md-block align-items-center">
+                            <div>
+                                <div class="d-inline-flex align-items-center">
+                                    <h3 class="text-dark mb-1 font-weight-medium">{{totalTimePlayed}}</h3>
+                                    <span class="badge bg-primary font-12 text-white font-weight-medium badge-pill ml-2 d-lg-block d-md-none"></span>
+                                </div>
+                                <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate" translate>_Guardian_Dashboard_TotalPlayTime</h6>
+                            </div>
+                            <div class="ml-auto mt-md-3 mt-lg-0">
+                                <span class="opacity-7 text-muted"><i data-feather="clock"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-xl-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex d-lg-flex d-md-block align-items-center">
+                            <div>
+                                <div class="d-inline-flex align-items-center">
+                                    <h3 class="text-dark mb-1 font-weight-medium">0%</h3>
+                                    <span class="badge bg-primary font-12 text-white font-weight-medium badge-pill ml-2 d-lg-block d-md-none"></span>
+                                </div>
+                                <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate" translate>Total Game Progress</h6>
+                            </div>
+                            <div class="ml-auto mt-md-3 mt-lg-0">
+                                <span class="opacity-7 text-muted"><i data-feather="pie-chart"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-xl-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex d-lg-flex d-md-block align-items-center">
+                            <div>
+                                <div class="d-inline-flex align-items-center">
+                                    <h3 class="text-dark mb-1 font-weight-medium">{{avgTimePlayed}}</h3>
+                                    <span class="badge bg-primary font-12 text-white font-weight-medium badge-pill ml-2 d-lg-block d-md-none"></span>
+                                </div>
+                                <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate" translate>_Guardian_Dashboard_AveragePlayTime</h6>
+                            </div>
+                            <div class="ml-auto mt-md-3 mt-lg-0">
+                                <span class="opacity-7 text-muted"><i data-feather="activity"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-xl-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex d-lg-flex d-md-block align-items-center">
+                            <div>
+                                <div class="d-inline-flex align-items-center">
+                                    <h3 class="text-dark mb-1 font-weight-medium">{{totalMistakes}}</h3>
+                                    <span class="badge bg-primary font-12 text-white font-weight-medium badge-pill ml-2 d-lg-block d-md-none"></span>
+                                </div>
+                                <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate" translate>_Guardian_Dashboard_TotalMistakes</h6>
+                            </div>
+                            <div class="ml-auto mt-md-3 mt-lg-0">
+                                <span class="opacity-7 text-muted"><i data-feather="alert-triangle"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-xl-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex d-lg-flex d-md-block align-items-center">
+                            <div>
+                                <div class="d-inline-flex align-items-center">
+                                    <h3 class="text-dark mb-1 font-weight-medium">0</h3>
+                                    <span class="badge bg-primary font-12 text-white font-weight-medium badge-pill ml-2 d-lg-block d-md-none"></span>
+                                </div>
+                                <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate" translate>_Guardian_Dashboard_TotalCoins</h6>
+                            </div>
+                            <div class="ml-auto mt-md-3 mt-lg-0">
+                                <span class="opacity-7 text-muted"><i data-feather="award"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-xl-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex d-lg-flex d-md-block align-items-center">
+                            <div>
+                                <div class="d-inline-flex align-items-center">
+                                    <h3 class="text-dark mb-1 font-weight-medium">{{avgScorePercent}}</h3>
+                                    <span class="badge bg-primary font-12 text-white font-weight-medium badge-pill ml-2 d-lg-block d-md-none"></span>
+                                </div>
+                                <h6 class="text-muted font-weight-normal mb-0 w-100 text-truncate" translate>_Guardian_Dashboard_TotalScore</h6>
+                            </div>
+                            <div class="ml-auto mt-md-3 mt-lg-0">
+                                <span class="opacity-7 text-muted"><i data-feather="bar-chart"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--div class="card-group">
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex d-lg-flex d-md-block align-items-center">
+                        <div>
+                            <div class="d-inline-flex align-items-center">
+                                <h2 class="text-dark mb-1 font-weight-medium">{{totalTimePlayed}}</h2>
+                                <span class="badge bg-primary font-12 text-white font-weight-medium badge-pill ml-2 d-lg-block d-md-none"></span>
+                            </div>
+                            <h2 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Total Play Time</h2>
+                        </div>
+                        <div class="ml-auto mt-md-3 mt-lg-0">
+                            <span class="opacity-7 text-muted"><i data-feather="clock"></i></span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex d-lg-flex d-md-block align-items-center">
+                        <div>
+                            <div class="d-inline-flex align-items-center">
+                                <h2 class="text-dark mb-1 font-weight-medium">0%</h2>
+                                <span class="badge bg-primary font-12 text-white font-weight-medium badge-pill ml-2 d-lg-block d-md-none"></span>
+                            </div>
+                            <h2 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Total Game Progress</h2>
+                        </div>
+                        <div class="ml-auto mt-md-3 mt-lg-0">
+                            <span class="opacity-7 text-muted"><i data-feather="pie-chart"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex d-lg-flex d-md-block align-items-center">
+                        <div>
+                            <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium">{{avgTimePlayed}}</h2>
+                            <h2 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Average Play Time</h2>
+                        </div>
+                        <div class="ml-auto mt-md-3 mt-lg-0">
+                            <span class="opacity-7 text-muted"><i data-feather="activity"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-group">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex d-lg-flex d-md-block align-items-center">
+                        <div>
+                            <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium">{{totalMistakes}}</h2>
+                            <h2 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Total Mistakes</h2>
+                        </div>
+                        <div class="ml-auto mt-md-3 mt-lg-0">
+                            <span class="opacity-7 text-muted"><i data-feather="alert-triangle"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex d-lg-flex d-md-block align-items-center">
+                        <div>
+                            <h2 class="text-dark mb-1 w-100 text-truncate font-weight-medium">0</h2>
+                            <h2 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Coins Earned</h2>
+                        </div>
+                        <div class="ml-auto mt-md-3 mt-lg-0">
+                            <span class="opacity-7 text-muted"><i data-feather="award"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex d-lg-flex d-md-block align-items-center">
+                        <div>
+                            <h2 class="text-dark mb-1 font-weight-medium">{{avgScorePercent}}</h2>
+                            <h2 class="text-muted font-weight-normal mb-0 w-100 text-truncate">Total Score</h2>
+                        </div>
+                        <div class="ml-auto mt-md-3 mt-lg-0">
+                            <span class="opacity-7 text-muted"><i data-feather="bar-chart"></i></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div-->
+        <!-- *************************************************************** -->
+        <!-- End First Cards -->
+        <!-- *************************************************************** -->
+
+        <!-- *************************************************************** -->
+        <!-- Start Location and Earnings Charts Section -->
+        <!-- *************************************************************** -->
+        <div class="row">
+            <!--div class="col-md-6 col-lg-8">
+        <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-start">
+                        <h4 class="card-title mb-0">Performance by Skill (%)</h4>
+
+                    </div>
+                    <div class="pl-4 mb-5">
+                        <div class="stats ct-charts position-relative" style="height: 315px;"></div>
+                    </div>
+                    <ul class="list-inline text-center mt-4 mb-0">
+                        <li class="list-inline-item text-muted font-italic">Levels</li>
+                    </ul>
+                </div>
+            </div>
+        </div-->
+
+            <div class="col-lg-6 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Performance by Skill </h4>
+                        <div class="perf-skill mt-4 position-relative" style="height:294px;"></div>
+                        <ul class="list-inline text-center mt-5 mb-2">
+                            <li class="list-inline-item text-muted font-italic">Time</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-6 col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="card-title">Performance by Level (%)</h4>
+                        <div class="perf-level mt-4 position-relative" style="height:294px;"></div>
+                        <ul class="list-inline text-center mt-5 mb-2">
+                            <li class="list-inline-item text-muted font-italic">Levels</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!-- *************************************************************** -->
+        <!-- End Location and Earnings Charts Section -->
+        <!-- *************************************************************** -->
+    </div>
+</div>
+<div *ngIf="!isEnabled">
+    <div class="row">
+        <div>
+            <h3 class="page-title text-truncate font-weight-medium mb-1" translate><span translate>_Hello</span> {{username}}!</h3>
+            <h5 class="text-muted font-weight-normal mb-0 w-100 " translate>_Welcome_Detail</h5>
+        </div>
+    </div>
+
+    <div class="row">
+        <div>
+            <h3 class="mt-4" translate>_Dashboard_AvailableGames</h3>
+            <h5 class="mb-4 text-muted font-weight-normal mb-0 w-100 " translate>_Dashboard_AvailableGames_Detail</h5>
+            <app-selectgame (newItemEvent)="updateGameId($event)" [selectedStudentId]="selectedStudentId"></app-selectgame>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div>
+            <h3 class="mt-4" translate>_Dashboard_GamesLibrary</h3>
+            <h5 class="mb-4 text-muted font-weight-normal mb-0 w-100 " translate>_Dashboard_GamesLibrary_Detail</h5>
+            <app-library></app-library>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div>
+            <h3 class="mt-4" translate>_Dashboard_UpcomingGames</h3>
+            <h5 class="mb-4 text-muted font-weight-normal mb-0 w-100 " translate>_Dashboard_UpcomingGames_Detail</h5>
+            <app-upcoming></app-upcoming>
+        </div>
+    </div>
+</div>
+<div>
+    <router-outlet></router-outlet>
+</div>

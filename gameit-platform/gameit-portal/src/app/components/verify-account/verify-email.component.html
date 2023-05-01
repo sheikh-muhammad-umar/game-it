@@ -1,0 +1,169 @@
+<!-- 
+<div *ngIf="!codeSent" class="col-md-12 p-3"
+style="margin: 0 auto; max-width: 450px">
+    <div class="">
+      <h4 style="text-align: center" translate>_Verify</h4>
+      <form
+        name="form"
+        (ngSubmit)="f.form.valid && sendEmailVerificationCode()"
+        #f="ngForm"
+        novalidate
+      >
+      <div class="form-group" style="clear: both">
+        <label for="username" translate>_Verify_Username</label>
+        <input
+          type="text"
+          class="form-control"
+          name="username"
+          [(ngModel)]="form.username"
+          required
+          #username="ngModel"
+        />
+        <div class="alert-danger" *ngIf="username.errors && f.submitted">
+          <div *ngIf="username.errors['required']" translate>
+            _Login_Username_Required
+          </div>
+        </div>
+      </div>
+  
+        <div class="form-group">
+          <button class="btn btn-primary btn-block" translate>
+            _Sent_Code_Button
+          </button>
+        </div>
+  
+        <div
+          class="alert alert-warning"
+          *ngIf="f.submitted && codeSendingFailed"
+          translate
+        >
+        {{ errorMessage }}
+        </div>
+      </form>
+    </div>
+  </div> -->
+
+  <div *ngIf="!verified">
+  <div class="alert alert-success" style="text-align: center">
+    <section class="sc-eNQAEJ haVFxc" role="main">
+      <div class="sc-jKJlTe jPieqz">
+        <h4 translate>_Signup_Success</h4>
+      </div>
+      <div id="email-sent-page">
+        <div class="sc-cHGsZl crTHGb">
+          <img
+            style="width: 100px; margin: 10px"
+            id="email-img"
+            src="../../../assets/images/verify-email.png"
+            class="email-img"
+          />
+        </div>
+        <div class="sc-TOsTZ fHxUUE">
+          <p translate>_Register_Success_Proceed</p>
+        </div>
+        <p class="sc-cJSrbW hLZUCD">{{ form.username }}</p>
+        <p class="sc-cJSrbW hLZUCD" style="color: red">
+          * Please also check your spam / junk / promotion folders
+        </p>
+        <p class="sc-cJSrbW hLZUCD">
+          <span *ngIf="reSendCodeTimer == 0" (click)="sendEmailVerificationCode()" style="color: #f79431; cursor: pointer;">Click here</span>
+          <span *ngIf="reSendCodeTimer != 0" >Click here</span>
+          if you don't recieve code in {{reSendCodeTimer}} seconds.
+        </p>
+      </div>
+    </section>
+  </div>
+
+  <div class="col-md-12 p-3" style="margin: 0 auto; max-width: 450px">
+    <div class="">
+      <h4 style="text-align: center" translate>_Verify</h4>
+      <form
+        name="form"
+        (ngSubmit)="f.form.valid && verifyEmail()"
+        #f="ngForm"
+        novalidate
+      >
+        <div class="form-group" style="clear: both">
+          <label for="username" translate>_Verify_Username</label>
+          <input
+            type="text"
+            class="form-control"
+            name="username"
+            [(ngModel)]="form.username"
+            required
+            #username="ngModel"
+          />
+          <div class="alert-danger" *ngIf="username.errors && f.submitted">
+            <div *ngIf="username.errors['required']" translate>
+              _Login_Username_Required
+            </div>
+            <!-- <div *ngIf="username.errors['pattern']" translate>
+                _Verify_Username_Alert
+            </div> -->
+          </div>
+        </div>
+        <div class="form-group" style="clear: both">
+          <label for="code" translate>_Verify_Code</label>
+          <input
+            type="text"
+            class="form-control"
+            name="code"
+            [(ngModel)]="form.code"
+            required
+            pattern="[0-9]{6,6}"
+            #code="ngModel"
+          />
+          <div class="alert-danger" *ngIf="code.errors && f.submitted">
+            <div *ngIf="code.errors['required']" translate>
+              _Verify_code_Required
+            </div>
+            <div *ngIf="code.errors['pattern']" translate>
+              _Verify_code_Alert
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <button class="btn btn-primary btn-block" translate>
+            _Verify_Button
+          </button>
+        </div>
+
+        <div
+          class="alert alert-warning"
+          *ngIf="f.submitted && notVerified"
+          translate
+        >
+          {{ errorMessage }}
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="alert alert-success" style="text-align: center" *ngIf="verified">
+  <section class="sc-eNQAEJ haVFxc" role="main">
+    <div class="sc-jKJlTe jPieqz">
+      <h4 translate>_Verify_Success</h4>
+    </div>
+    <div id="email-sent-page">
+      <div class="sc-cHGsZl crTHGb">
+        <img
+          style="width: 100px; margin: 10px"
+          id="email-img"
+          src="../../../assets/images/verify-email.png"
+          class="email-img"
+        />
+      </div>
+      <!-- <div class="sc-TOsTZ fHxUUE">
+        <p translate>_Register_Success_Proceed</p>
+        </div> -->
+      <a class="sc-cJSrbW hLZUCD" style="color: red" href="/login"
+        ><span translate>_Move_To_Dashboard</span></a
+      >
+      <!-- <p class="sc-cJSrbW hLZUCD">_Move_To_Dashboard</p>
+        <p class="sc-cJSrbW hLZUCD" style="color: red">
+        * Please also check your spam / junk / promotion folders
+        </p> -->
+    </div>
+  </section>
+</div>

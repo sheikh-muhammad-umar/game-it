@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "gameit-platform-ksa",
+  "private_key_id": "fcccdb1aace985096dc3280fb543624c96ca2f4a",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCfe+DIbUog9iI8\nwveMDZk6AhkXcfITOItZZwbXUT2KBCdUdQPTsEO/moNm/JXr6Um8Blzx4MOyi7mP\nzxlotFwFVzHtlo/p7Q0MRYyatUcRBubjhfHPjr5tKaNoEiyA0SnFrGMPR7HDcR78\nKwsW0dQK6JOBwZI804yDzi27lCxjh9YrToq8269Teo6rZvlzfa1xOMYM2xb9NkYA\nnMnVh4W2sEn6nqDY62y8SoSefLyVYd9+9kL906i2V5umoUoAwTQvp4wFvJhhqRET\niU9ko9Pt7P82SQtsHHqpytErk6d0NwKXLgg6YkNMdbammEKzasNNf17fN+azPKYr\nXH+i3KynAgMBAAECggEAEgtbEHJFG9udXhCVH5R+TLDmE+ABiqkwIwpkHMKFWvND\nW+vtZesgjzI1Qda8Q7febtatd3R9z9q9QQcmkdEuRDBsZrxNRiNbAZNw6CQwiT2l\nrAKArIIzC3jVkzXTMTP5LPNnNdhfxYQsBE3+cDOHcUCFR/4VxKoO0O7n/7wxFYWg\nLEZFI83xIQTkBsnJ0iIUw4HUrpREF+cwuIdUyYkfjBFwjLwIp9rvkGiAhlabVpjG\nFvd+gX242QJhZ7nGrmK6a4vj4jiDxTdNnUqsW1XymnJ516gLhiYvxXU3RkvtRExo\nkWYd4CMzs/lZifVbadwy0tJqvgfvBrbg13wli5alSQKBgQDVVS1goNV3NRnKkwE5\nd/IsxjTK+6uF9KzJonuVyb3xQTr9cudPbhzLwsK4Up4n3o613xL9IxAGNzk0Iahh\nDiq8Urv56kNUYlCFE8TTIMbbOoH+4IPDU0NfuBlbqDfydphM2TiYBlO1hKAszX3q\nKbpJR7+7x9eyeOkhPwNYxt/jEwKBgQC/YZf74OF8wUOx18YWS/2cKfEohZrG2fQc\nXUyf1iOm2pTMcBTDP6pdDY1tiCUXYf53n+bzYDGnKqnnbfApQumTXp5TBur0maJD\nRQxpjWyzFen5C7gfHBGf8fhHO4FsRirZldFIE7RhjGpbOqxNlgctypmAnsriEkfv\nLW1zg1sunQKBgQDOigrG1LAXG6f+wlibJQ+oXbVbGFG1/W8UQGVaXdmxq6/LFeXw\ntvDWLZeMESDiBM0yM+kUf0/SVMDjQfrdDHQ/o/IuQaoyFoVSchNLPR6JvZmCBChN\ngV1nXLvgS3rvGfbV4DC0rtt4kBDrj3/qp7+dlwOAcDjap8k90N4So2i7VQKBgQCN\nmP6jTLJo5HFanuQf0R+WMG4OZjOrFs2HQvyTchO0uxrG29Jw16UL7iAKv2V6FHX7\nOiLdRPnXzjghU/USAkDhWWtY0NB8I0Or8+WIHywioH8ZVbNnyRO9PIFO6tcKLiw8\nCp3qbzHRzttOHm4nhW5QUgsa3+IKPC5e50SI59JJ/QKBgGq/Zx52MgXg+a3AsLy6\nltMEX6IgsmniboJNpUYQhtNTIYWQd+QJrtZAIP2c2dXP4IHgKhvYLyeUVsT1uFmv\noV7EfE7AeYDStVaU0VXw3OpSM5J6j8tUUsLp5eTN91lxAS4aEBve56FirsZ3+hn3\nsPHAKSmxTypvxRRXr6NIAbkH\n-----END PRIVATE KEY-----\n",
+  "client_email": "g-analytics@gameit-platform-ksa.iam.gserviceaccount.com",
+  "client_id": "101919079661041091562",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/g-analytics%40gameit-platform-ksa.iam.gserviceaccount.com"
+}

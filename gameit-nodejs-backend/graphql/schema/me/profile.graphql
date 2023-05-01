@@ -1,0 +1,19 @@
+
+input UpdateProfileInputs {
+    """ User name """
+	name: String! @constraint(minLength: 3, maxLength: 40)
+    """ Country code """
+	country: String! 
+    """ language """
+    language: String!
+    """ timezone """
+    timezone: String!
+}
+
+type Mutation {
+	""" Update classroom """
+	updateUserProfile (
+		""" Input fields """
+		inputs: UpdateProfileInputs!
+	): Void @auth(role: [GUARDIAN, TEACHER, SCHOOL_ADMIN]) @cost(complexity: 300)
+}

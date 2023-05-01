@@ -1,0 +1,45 @@
+<div *ngIf="gameId==1">
+    <h3 style="padding-bottom: 30px;"><a [routerLink]="['/games/']" style="cursor: pointer;">Games</a> / Voyage of Ezzo & Gizmo</h3>
+    <div class="card">
+        <img class="card-img-top img-fluid" src="assets/images/games/game1-stage1.png" alt="Card image cap">
+        <div class="card-body">
+            <h4 class="card-title">Visual Skills</h4>
+            <p class="card-text">The start of the journey for Ezo and Gizmo, entering the city after the alien invasion. Ezo's family along all humans on earth have been taken by aliens. Ezo with the help of Gismo will complete puzzles and fun gameplay obstacles, must find
+                a way to rescue his family. </p>
+            <p> In this stage we train the players focus and attention span, the player will be engaged in a game environment while enhancing their cognitive abilities.</p>
+            <a href="http://localhost:8080/api/student/download?downloadGame=gameit-setup.exe&studentGameId=1" class="btn btn-primary">Download</a>
+        </div>
+    </div>
+</div>
+<div *ngIf="gameId==2">
+    <h3 style="padding-bottom: 30px;"><a [routerLink]="['/games/']" style="cursor: pointer;">Games</a> / Confronting Aliens</h3>
+    <div class="card">
+        <img src="assets/images/games/game1-stage2.png " alt="Card image cap ">
+        <div class="card-body ">
+            <h4 class="card-title ">Spatial Skills</h4>
+            <p class="card-text ">The second part of the adventure for Ezo and Gismo, they stumble across a laboratory, where they have to complete puzzles, defeat aliens, and rescue civilians.
+            </p>
+            <p>In this stage the player is trained to distinguish between different shapes and colors. With added abilities such as firing laser beams. The player will always have something to do, that brighten the gameplay experience.</p>
+            <a (click)="assignOpen()" href="javascript:void(0)" class="btn btn-primary">Assign to User</a>
+        </div>
+    </div>
+</div>
+<div *ngIf="gameId==3 ">
+    <h3 style="padding-bottom: 30px; "><a [routerLink]="['/games/']" style="cursor: pointer;">Games</a> / Stage 3</h3>
+    <div class="card ">
+        <img class="card-img-top img-fluid " src="assets/images/games/game1-stage3.png " alt="Card image cap ">
+        <div class="card-body ">
+            <h4 class="card-title ">Memory Skills</h4>
+            <p class="card-text ">At this part of Ezo and Gismo's journey they find themselves in spacecraft hanger, where they must find their way to the alien spaceship, to find Ezo's parents. They must defeat aliens who are patrolling, and ready to fight back.
+
+            </p>
+            <p>
+
+                In this stage the player is trained on memory skills, along with the all skills practiced from the last 2 stages. Every time the player plays through the 3 stages, their attention and cognitive abilities get stronger.</p>
+            <a (click)="assignOpen()" href="javascript:void(0)" class="btn btn-primary">Assign to User</a>
+        </div>
+    </div>
+</div>
+<div>
+    <app-assigngame *ngIf="assignOn" (assignClose())="assignClose()"></app-assigngame>
+</div>

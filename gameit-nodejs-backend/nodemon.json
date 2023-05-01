@@ -1,0 +1,13 @@
+{
+	"watch": [
+		"controllers/**/*",
+		"fastify/**/*",
+		"graphql/**/*",
+		"helpers/**/*",
+		"modules/**/*",
+		"plugins/**/*",
+		"sequelize/**/*",
+		"utils/**/*"
+	],
+	"ext": "js,json,graphql,graphqls"
+}

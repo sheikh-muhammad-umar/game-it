@@ -1,0 +1,89 @@
+# noinspection GraphQLUnresolvedReference,GraphQLMissingType
+
+""" Students sort orders """
+enum StudentsSortOrder {
+	""" Natural order """
+	NATURAL
+	""" Name ascending """
+	FULLNAME_ASC
+	""" Name descending """
+	FULLNAME_DESC
+	""" Grade ascending """
+	GRADE_ASC
+	""" Grade descending """
+	GRADE_DESC
+}
+
+type GuardianInvitationStatus {
+	""" Email """
+	email: String!
+	""" Status """
+	status: String!
+	""" Requested At """
+	requestedAt: DateTime
+	""" Completed At """
+	completedAt: DateTime
+	""" Expire At """
+	expiredAt: DateTime
+}
+
+type Student {
+	""" ID """
+	id: PositiveInt!
+	""" Full name """
+	fullName: String!
+	""" Grade """
+	grade: NonNegativeInt
+	""" DOB """
+	dob: Date!
+	""" Diagnoses """
+	diagnoses: [PositiveInt!]!
+	""" School """
+	school: School
+	""" Classroom """
+	classroom: Classroom
+	""" Teacher """
+	teacher: User
+	""" Guardian """
+	guardian: User
+	""" Guardian Invitation """
+	guardianInvitation: GuardianInvitationStatus
+}
+
+type StudentsConnection {
+	""" Total nodes """
+	totalCount: Int @cost(complexity: 1)
+	""" Pagination info """
+	pageInfo: PageInfo!
+	""" Nodes collection """
+	nodes: [Student!]
+}
+
+input StudentListFilters {
+	""" Contains name """
+	name: String @constraint(minLength: 2, maxLength: 40),
+	""" Class ID """
+	classId: PositiveInt
+	""" Teacher ID """
+	teacherId: PositiveInt
+	""" School ID """
+	schoolId: PositiveInt
+	""" Grade """
+	grade: NonNegativeInt
+	""" Guardian """
+	guardian: PositiveInt
+}
+
+type Query {
+	""" Get Students listing """
+	listStudents (
+		""" Pagination props """
+		pager: PagerOptions = {},
+		""" Sort order """
+		sortOrder: [StudentsSortOrder] = [NAME_ASC],
+		""" Meta fields selection """
+		metaPaths: [String!]
+		""" Attributes filter """
+		filters: StudentListFilters
+	): StudentsConnection @auth(role: [TEACHER, SCHOOL_ADMIN, GUARDIAN]) @cost(complexity: 50, multipliers: ["pager.limit", "sortOrder"])
+}
